@@ -1,11 +1,13 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Nav from './components/Nav';
+import MyCustomTheme from './components/Theme';
 // pages
 import Home from './pages/Home';
 
 function App() {
   return (
+    <MyCustomTheme>
     <Router>
     <div>
       <Nav/>
@@ -18,6 +20,7 @@ function App() {
       <Route path="/login"></Route>
     </div>
     </Router>
+    </MyCustomTheme>
   );
 }
 
