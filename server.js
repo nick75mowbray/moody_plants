@@ -12,7 +12,8 @@ app.use(bodyParser.json());
 
 // DB Config
 const db= require("./config/keys").mongoURI;
-
+// set port
+const PORT = process.env.PORT || 3002;
 // connect to mongoose
 mongoose
     .connect(process.env.MONGODB_URI, { 
@@ -27,7 +28,6 @@ mongoose
 // use routes
 app.use('/api/items', items);
 
-// set port
-const PORT = process.env.PORT || 3002;
+
 
 app.listen(PORT, ()=> console.log(`server started on PORT ${PORT}`));
