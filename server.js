@@ -1,12 +1,15 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 // api
 const items = require('./routes/api/items');
 
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(bodyParser.json());
 
@@ -16,18 +19,26 @@ const db= require("./config/keys").mongoURI;
 const PORT = process.env.PORT || 3002;
 // connect to mongoose
 mongoose
-    .connect(process.env.MONGODB_URI, { 
+    .connect(process.env.MONGODB_URI || 'mongodb://localhost/print_site', { 
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
         useFindAndModify: false
-        })
-    .then(()=> console.log("MongoBD Connected..."))
-    .catch(err=>console.error(err));
+        });
+
+const mongooseConnection = mongoose.connection;
+    mongooseConnection.on('error', console.error.bind(console, 'connection error:'));
+    mongooseConnection.once('open', function() {
+        console.log("connected to mongoosedb!");
+    });   
 
 // use routes
 app.use('/api/items', items);
 
+// send index.html
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname + "./client/public/index.html"));
+  });
 
 
 app.listen(PORT, ()=> console.log(`server started on PORT ${PORT}`));
