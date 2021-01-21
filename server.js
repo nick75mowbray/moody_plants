@@ -13,6 +13,8 @@ app.use(express.json());
 
 app.use(bodyParser.json());
 
+app.use(express.static('client/build'));
+
 // DB Config
 const db= require("./config/keys").mongoURI;
 // set port
@@ -36,8 +38,8 @@ const mongooseConnection = mongoose.connection;
 app.use('/api/items', items);
 
 // send index.html
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname + "./client/public/index.html"));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 
 
