@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cors= require("cors");
 
 // api
 const items = require('./routes/api/items');
@@ -10,10 +11,10 @@ const items = require('./routes/api/items');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(cors());
 app.use(bodyParser.json());
 
-app.use(express.static('client/build'));
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // DB Config
 const db= require("./config/keys").mongoURI;
@@ -26,20 +27,18 @@ mongoose
         useUnifiedTopology: true,
         useCreateIndex: true,
         useFindAndModify: false
-        });
+        })
+        .then(() => console.log("Database Connected Successfully"))
+        .catch(err => console.log(err));
 
-const mongooseConnection = mongoose.connection;
-    mongooseConnection.on('error', console.error.bind(console, 'connection error:'));
-    mongooseConnection.once('open', function() {
-        console.log("connected to mongoosedb!");
-    });   
+
 
 // use routes
 app.use('/api/items', items);
 
 // send index.html
 app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
 
 
