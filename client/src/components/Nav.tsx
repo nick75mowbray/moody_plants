@@ -7,16 +7,13 @@ import InputBase from '@material-ui/core/InputBase';
 import { createStyles, fade, Theme, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import './styles/style.scss';
+import Logo from '../assets/moody_plants_black@2x.png';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-    },
-    pallette: {
-      primary: {
-        main: '#fff'
-      }
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -27,6 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('sm')]: {
         display: 'block',
       },
+      // add styling to center icon
+      textAlign: 'center'
     },
     search: {
       position: 'relative',
@@ -75,7 +74,7 @@ export default function Nav() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className="navBar banner">
         <Toolbar>
           <IconButton
             edge="start"
@@ -87,6 +86,7 @@ export default function Nav() {
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             Moody Plants
+            <img src={Logo}></img>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
