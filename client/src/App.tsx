@@ -6,7 +6,7 @@ function App() {
   return (
     <Router>
     <div>
-      <Nav></Nav>
+      <Nav/>
       <h1>Hello</h1>
     </div>
     </Router>
