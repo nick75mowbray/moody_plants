@@ -8,7 +8,8 @@ import { createStyles, fade, Theme, makeStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import './styles/style.scss';
-import Logo from '../assets/moody_plants_black@2x.png';
+import Logo from '../assets/logo.svg';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,7 +26,8 @@ const useStyles = makeStyles((theme: Theme) =>
         display: 'block',
       },
       // add styling to center icon
-      textAlign: 'center'
+      textAlign: 'center',
+      height: 30
     },
     search: {
       position: 'relative',
@@ -84,10 +86,13 @@ export default function Nav() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          {/* <Typography className={classes.title} variant="h6" noWrap>
             Moody Plants
-            <img src={Logo}></img>
-          </Typography>
+          </Typography> */}
+            <img 
+            src={Logo} 
+            className={classes.title}
+            alt="LOGO"></img>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -101,6 +106,7 @@ export default function Nav() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+          <ShoppingCartIcon/>
         </Toolbar>
       </AppBar>
     </div>

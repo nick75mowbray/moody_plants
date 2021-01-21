@@ -13,7 +13,7 @@ function Hero() {
         <Typography component="div" 
         style={{ 
             backgroundColor: '#cfe8fc', 
-            height: '20vh', 
+            height: '30vh', 
             backgroundImage: 'url("https://via.placeholder.com/400")' }} />
       </Container>
       </>

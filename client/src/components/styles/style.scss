@@ -9,3 +9,22 @@
     margin: 0;
     z-index: 1;
 }
+// nav logo
+.logo.nav-logo {
+    height: 80%;
+    width: auto;
+    z-index: 90;
+}
+// main product page layout
+.image-grid.product-list {
+    padding: {
+        bottom: 2vh;
+    };
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+// product cards 
+.product-card.product-container {
+    padding: 2vw;
+}

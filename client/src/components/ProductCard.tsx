@@ -17,8 +17,8 @@ interface Props {
     name: string, 
     price: number, 
     image: string, 
-    description: string,
-    key: number
+    description?: string,
+    key?: number
 }
 
 
@@ -43,7 +43,7 @@ const ProductCard: React.FC<Props> = ({name, image, description, price}:Props)=>
           <Typography variant="body2" color="textSecondary" component="p">
             size: 50cm x 70cm | 20" x 30"
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="textPrimary" component="p">
             {price}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">

@@ -42,20 +42,22 @@ const images: image[] = [{
 
 const ImageList = ()=> {
     return (
-        <>
+        <div className="image-grid product-list">
         {images ? images.map((product)=>{
             {console.log(product.name)}
             return (
+                <div className="product-card product-container">
             <ProductCard
+                
                 key={product.key} 
                 name={product.name}
                 image={product.image}
                 price={product.price}
                 description={product.description}
-            />
+            /></div>
             )
         }):<></>}
-        </>
+        </div>
     )
 }
 
