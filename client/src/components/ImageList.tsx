@@ -37,14 +37,13 @@ const [products, setProducts] = useState<productStateType | undefined>(undefined
 // load all products
 useEffect(()=>{
     loadProducts();
-    console.log("loadProducts activated");
 }, []);
 
 function loadProducts() {
     API.getProducts()
     .then(res => {
         setProducts(res.data);
-        console.log(res);}
+        }
         )
         
         .catch(err=>console.error(err));
@@ -53,15 +52,13 @@ function loadProducts() {
     return (
         <div className="image-grid product-list">
         {products ? products.map((product, index)=>{
-            {console.log(product.name)}
             return (
-                <div className="product-card product-container">
+                <div className="product-card product-container" key={index}>
             <ProductCard
-                
-                key={index} 
                 name={product.name}
                 image={product.images[0]}
                 price={product.price}
+                size={product.size}
         
             /></div>
             )

@@ -15,12 +15,25 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
+const db = require("./config/keys").mongodb_URI;
+console.log(db);
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/print_site", {
-  useUnifiedTopology: true,
-  useNewUrlParser: true
-})
-.then(()=>console.log("connected to mongoose server"));
+mongoose.connect(
+  db,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
+
+const mongooseConnection = mongoose.connection;
+mongooseConnection.on('error', console.error.bind(console, 'connection error:'));
+mongooseConnection.once('open', function() {
+  console.log(`connected to mongoosedb! ${mongooseConnection}`);
+
+});
 
 // Start the API server
 app.listen(PORT, function() {

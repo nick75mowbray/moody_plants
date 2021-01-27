@@ -8,11 +8,11 @@ const myTheme = createMuiTheme({
             black: '#2B2B2B'
         },
         primary: {
-            main: '#00B800'
+            main: '#fff'
         },
         secondary: {
-            main: orange[500],
-        }
+            main: '#eee',
+        },
     }, 
     shape: {
         borderRadius: 0

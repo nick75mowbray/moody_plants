@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import Nav from './components/Nav';
+import MenuDrawer from './components/MenuDrawer';
 import MyCustomTheme from './components/Theme';
 // pages
 import Home from './pages/Home';
@@ -10,7 +10,7 @@ function App() {
     <MyCustomTheme>
     <Router>
     <div>
-      <Nav/>
+      <MenuDrawer/>
       <Route exact path="/">
         <Home/>
         </Route>

@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import './styles/style.scss';
 import Logo from '../assets/logo.svg';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import MenuDrawer from './MenuDrawer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -78,6 +79,7 @@ export default function Nav() {
     <div className={classes.root}>
       <AppBar position="static" className="navBar banner">
         <Toolbar>
+          <MenuDrawer/>
           <IconButton
             edge="start"
             className={classes.menuButton}
