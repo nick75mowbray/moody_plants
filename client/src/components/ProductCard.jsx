@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     maxWidth: 345,
     width: 350
   },
+  
 });
 
 
@@ -22,17 +23,18 @@ const ProductCard = ({name, image, price, size})=>{
   return (
     <Card className={classes.root} key={name}>
       <CardActionArea>
-        <CardMedia
+        <CardMedia 
           component="div"
           alt={name}
-          height="140"
+          // height="140"
           title={name}
         >
           <div style={{
             overflow: 'hidden',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'}}>
+            justifyContent: 'center',
+            }}>
             <Image cloudName="dw7h2b2j3" 
               publicId={image} 
               responsive= {true}
