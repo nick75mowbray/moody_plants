@@ -18,7 +18,7 @@ const myTheme = createMuiTheme({
         borderRadius: 0
     },
     typography: {
-        htmlFontSize: 22
+        htmlFontSize: 16
     }
 });
 
