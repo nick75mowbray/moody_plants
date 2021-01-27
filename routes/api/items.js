@@ -1,15 +1,17 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
+const productsController = require("../../controllers/productsController");
 
-// item model
-const Item = require('../../models/item');
+// Matches with "/api/products"
+router.route("/")
+  .get(productsController.findAll)
+  .post(productsController.create);
 
-router.get('/api/items', (req, res)=> {
-    Item.find()
-        .sort({date: -1})
-        .then(items => res.json(items))
-});
-
-
+// Matches with "/api/products/:id"
+router
+  .route("/:id")
+  .get(productsController.findById)
+  .put(productsController.update)
+  .delete(productsController.remove);
 
 module.exports = router;
+

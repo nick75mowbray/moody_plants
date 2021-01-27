@@ -27,7 +27,7 @@ const ItemSchema = new Schema({
                 type: Number,
                 required: true,
             },
-            length: {
+            height: {
                 type: Number,
                 required: true
             }
@@ -37,7 +37,7 @@ const ItemSchema = new Schema({
                 type: Number,
                 required: true,
             },
-            length: {
+            height: {
                 type: Number,
                 required: true
             }
@@ -54,7 +54,7 @@ const ItemSchema = new Schema({
     views: {
         type: Number
     },
-    
+
 });
 
 module.exports = Item = mongoose.model('item', ItemSchema);

@@ -1,4 +1,5 @@
-import React, {ReactComponentElement, ReactNode} from 'react';
+import { ActionPictureInPicture } from 'material-ui/svg-icons';
+import React, {ReactComponentElement, ReactNode, useEffect, useState} from 'react';
 import ProductCard from './ProductCard';
 
 // example data
@@ -9,41 +10,28 @@ interface image {
     description: string,
     key: number
 }
-const images: image[] = [{
-    name: 'Monstera composition 1',
-    price: 70,
-    image: 'https://via.placeholder.com/400',
-    description: 'example description blah blah',
-    key: 1
-},
-{
-    name: 'Monstera composition 1',
-    price: 70,
-    image: 'https://via.placeholder.com/400',
-    description: 'example description blah blah',
-    key: 2
-},
-{
-    name: 'Monstera composition 1',
-    price: 70,
-    image: 'https://via.placeholder.com/400',
-    description: 'example description blah blah',
-    key: 3
-},
-{
-    name: 'Monstera composition 1',
-    price: 70,
-    image: 'https://via.placeholder.com/400',
-    description: 'example description blah blah',
-    key: 4
-},
-];
+
 
 
 const ImageList = ()=> {
+
+const [products, setProducts] = useState([]);
+
+// load all products
+useEffect(()=>{
+    loadProducts();
+}, []);
+
+function loadProducts() {
+    API.getProducts()
+    .then(res => 
+        setProducts(res.data))
+        .catch(err=>console.error(err));
+}
+
     return (
         <div className="image-grid product-list">
-        {images ? images.map((product)=>{
+        {products ? products.map((product)=>{
             {console.log(product.name)}
             return (
                 <div className="product-card product-container">
