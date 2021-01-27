@@ -46,9 +46,6 @@ const ProductCard: React.FC<Props> = ({name, image, description, price}:Props)=>
           <Typography variant="body2" color="textPrimary" component="p">
             {price}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
-          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
