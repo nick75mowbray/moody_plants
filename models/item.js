@@ -11,47 +11,37 @@ const ItemSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    soldOut: {
-        type: Boolean,
+    inventory: {
+        type: Number,
         required: true,
-        default: false
+        default: 0
     },
     // images
-    imageMain: {
-        type: String,
-        default: "https://via.placeholder.com/400",
+    images: {
+        type: Array,
         required: true
     },
-    imageTwo: {
-        type: String,
-        default: "https://via.placeholder.com/400",
-        required: true
-    },
-    imageThree: {
-        type: String,
-        default: "https://via.placeholder.com/400",
-        required: true
-    },
-    imageFour: {
-        type: String,
-        default: "https://via.placeholder.com/400",
-        required: true
-    },
-    sizeWidthCM: {
-        type: String,
-        required: true
-    },
-    sizeLengthCM: {
-        type: String,
-        required: true
-    },
-    sizeWidthInch: {
-        type: String,
-        required: true
-    },
-    sizeLengthInch: {
-        type: String,
-        required: true
+    size: {
+        metric: {
+            width: {
+                type: Number,
+                required: true,
+            },
+            length: {
+                type: Number,
+                required: true
+            }
+        },
+        imperial: {
+            width: {
+                type: Number,
+                required: true,
+            },
+            length: {
+                type: Number,
+                required: true
+            }
+        }
     },
     price: {
         type: Number,
@@ -60,7 +50,11 @@ const ItemSchema = new Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    views: {
+        type: Number
+    },
+    
 });
 
 module.exports = Item = mongoose.model('item', ItemSchema);
