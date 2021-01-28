@@ -6,12 +6,14 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {Image, Transformation} from 'cloudinary-react';
+import './styles/style.scss';
 
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    width: 350
+    // maxWidth: 345,
+    width: 350,
+    // maxHeight: 550
   },
   
 });
@@ -26,28 +28,31 @@ const ProductCard = ({name, image, price, size})=>{
         <CardMedia 
           component="div"
           alt={name}
-          // height="140"
           title={name}
         >
-          <div style={{
+          <div 
+          style={{
             overflow: 'hidden',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            }}>
+            maxHeight: '500'
+            }}
+             >
             <Image cloudName="dw7h2b2j3" 
               publicId={image} 
               responsive= {true}
               width="auto"
               dpr="auto" 
-              crop="scale"
+              crop="crop"
+              sizes="100vw"
               clienthints="true">
-              <Transformation quality="auto" fetchFormat="auto" />
+              <Transformation quality="auto" fetchFormat="auto" height="400" crop="scale"/>
           </Image></div>
           
         </CardMedia>
         
-        <CardContent>
+        <CardContent className="card-content card-text">
           <Typography gutterBottom variant="h5" component="h2">
             {name}
           </Typography>

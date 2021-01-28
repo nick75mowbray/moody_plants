@@ -1,3 +1,7 @@
+$color-black: #2B2B2B;
+$gradient-one: #11998e;
+$gradient-two: #38ef7d;
+
 // menu nav bar
 .navBar.banner {
     background-color: #fff;
@@ -15,6 +19,28 @@
     width: auto;
     z-index: 90;
 }
+// nav links
+
+.border-gradient {
+    overflow: visible;
+    transition: width 2s;
+    width: 0%;
+    border-bottom: 2px solid $color-black;
+    padding-bottom: 1rem;
+    &:hover {
+        width: 100%
+    }
+    .drawer-link {
+        color: $color-black;
+        text-decoration: none;
+        font-weight: 500;
+        
+        margin: 0;
+    &:hover {
+        font-weight: 700;
+    }
+}
+}
 // main product page layout
 .image-grid.product-list {
     padding: {
@@ -27,4 +53,15 @@
 // product cards 
 .product-card.product-container {
     padding: 2vw;
+}
+
+@media (max-width: 1200px){
+    html {
+        font-size: 16px;
+    }
+}
+@media (max-width: 2000px){
+    html {
+        font-size: 12px;
+    }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
 import { List, ListItem, Typography } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import './styles/style.scss';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -9,13 +10,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
         marginLeft: theme.spacing(2)
     },
-    title: {
-        color: '#2B2B2B',
-        textDecoration: 'none',
-        underline: 'none',
-        fontWeight: 500,
-        margin: '1rem 0'
-    }
   }),
 );
 
@@ -28,11 +22,31 @@ function NavLinks(){
         <Router>
             <List>
                 <Typography className={classes.root}>
-                    <ListItem><Link className={classes.title} color="inherit" to="/">SHOP</Link></ListItem>
-                    <ListItem> <Link className={classes.title} color="inherit" to="/about">ABOUT</Link></ListItem>
-                    <ListItem><Link className={classes.title} color="inherit" to="/account">ACCOUNT</Link></ListItem>
-                    <ListItem><Link className={classes.title} color="inherit" to="/cart">CART</Link></ListItem>
-                    <ListItem><Link className={classes.title} color="inherit" to="/login">LOGIN</Link></ListItem>
+                    <ListItem >
+                        <div className="border-gradient">
+                            <Link className="drawer-link" color="inherit" to="/">SHOP</Link>
+                        </div>
+                        </ListItem>
+                    <ListItem > 
+                        <div className="border-gradient">
+                            <Link className="drawer-link" color="inherit" to="/about">ABOUT</Link>
+                        </div> 
+                        </ListItem>
+                    <ListItem >
+                        <div className="border-gradient">
+                            <Link className="drawer-link" color="inherit" to="/account">ACCOUNT</Link>
+                        </div>
+                        </ListItem>
+                    <ListItem >
+                        <div className="border-gradient">
+                            <Link className="drawer-link" color="inherit" to="/cart">CART</Link>
+                        </div>
+                        </ListItem>
+                    <ListItem >
+                        <div className="border-gradient">
+                            <Link className="drawer-link" color="inherit" to="/login">LOGIN</Link>
+                        </div>
+                        </ListItem>
                 </Typography>
             </List>
         </Router>
