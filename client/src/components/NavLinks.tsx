@@ -19,7 +19,6 @@ function NavLinks(){
 
     return (
         <>
-        <Router>
             <List>
                 <Typography className={classes.root}>
                     <ListItem >
@@ -49,7 +48,6 @@ function NavLinks(){
                         </ListItem>
                 </Typography>
             </List>
-        </Router>
         </>
     )
 };

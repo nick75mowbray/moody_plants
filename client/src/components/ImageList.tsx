@@ -1,5 +1,5 @@
-import { ActionPictureInPicture } from 'material-ui/svg-icons';
-import React, {ReactComponentElement, ReactNode, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import API from '../utils/API';
 import mongoose from 'mongoose';
@@ -53,15 +53,17 @@ function loadProducts() {
         <div className="image-grid product-list">
         {products ? products.map((product, index)=>{
             return (
-                <div className="product-card product-container" key={index}>
-            <ProductCard
-                name={product.name}
-                image={product.images[0]}
-                price={product.price}
-                size={product.size}
-        
-            /></div>
-            )
+                <Link to={"/products/"+product._id}>
+                    <div className="product-card product-container" key={index}>
+                        <ProductCard
+                            name={product.name}
+                            image={product.images[0]}
+                            price={product.price}
+                            size={product.size}
+                        />
+                    </div>
+                </Link>
+                )
         }):<></>}
         </div>
     )
