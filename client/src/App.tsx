@@ -5,6 +5,7 @@ import MyCustomTheme from './components/Theme';
 // pages
 import Home from './pages/Home';
 import ProductPage from './pages/ProductPage';
+import './components/styles/style.scss';
 
 function App() {
   return (
@@ -12,11 +13,11 @@ function App() {
     <Router>
       <MenuDrawer/>
       <Switch>
-        <Route exact path="/"><Home/></Route>
-        <Route path="/about"></Route>
-        <Route path="/account"></Route>
-        <Route path="/cart"></Route>
-        <Route path="/login"></Route>
+        <Route exact path={["/","/products"]}><Home/></Route>
+        <Route exact path="/about"></Route>
+        <Route exact path="/account"></Route>
+        <Route exact path="/cart"></Route>
+        <Route exact path="/login"></Route>
         <Route exact path="/products/:id"><ProductPage/></Route>
       </Switch>
     </Router>

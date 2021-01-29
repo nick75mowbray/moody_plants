@@ -53,16 +53,16 @@ function loadProducts() {
         <div className="image-grid product-list">
         {products ? products.map((product, index)=>{
             return (
-                <Link to={"/products/"+product._id}>
-                    <div className="product-card product-container" key={index}>
+                <div className="product-card product-container" key={index}>
+                <Link to={"/products/"+product._id} className="product-link">
                         <ProductCard
                             name={product.name}
                             image={product.images[0]}
                             price={product.price}
                             size={product.size}
                         />
-                    </div>
                 </Link>
+                </div>
                 )
         }):<></>}
         </div>

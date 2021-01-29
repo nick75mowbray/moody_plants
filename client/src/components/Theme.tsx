@@ -2,7 +2,15 @@ import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { orange } from '@material-ui/core/colors';
 
+interface PaletteColor {
+    light?: string;
+    main: string;
+    dark?: string;
+    contrastText?: string;
+  }
+
 const myTheme = createMuiTheme({
+    
     palette: {
         common: {
             black: '#2B2B2B'

@@ -6,8 +6,7 @@ router.route("/")
   .get(productsController.findAll)
 
 // Matches with "/api/products/:id"
-router
-  .route("/:id")
+router.route("/:id")
   .get(productsController.findById)
   .put(productsController.update)
 

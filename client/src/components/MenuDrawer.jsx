@@ -31,7 +31,9 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       display: 'flex',
-      flexGrow: 1
+      flexGrow: 1,
+      width: '100vw',
+      margin: 0
     },
     appBar: {
       transition: theme.transitions.create(['margin', 'width'], {

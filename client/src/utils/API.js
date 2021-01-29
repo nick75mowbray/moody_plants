@@ -7,6 +7,6 @@ export default {
   },
   // Gets the product with the given id
   getProduct: function(id) {
-    return axios.get("/api/products/" + id);
+    return axios.get(`/api/products/${id}`);
   }
 };

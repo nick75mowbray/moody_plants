@@ -2,6 +2,14 @@ $color-black: #2B2B2B;
 $gradient-one: #11998e;
 $gradient-two: #38ef7d;
 
+
+body, html {
+    width: 100vw;
+}
+
+a {
+    text-decoration: none;
+}
 // menu nav bar
 .navBar.banner {
     background-color: #fff;
@@ -50,9 +58,13 @@ $gradient-two: #38ef7d;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 // product cards 
 .product-card.product-container {
     padding: 2vw;
+    .product-link {
+        text-decoration: none;
+    }
 }
 
 @media (max-width: 1200px){
