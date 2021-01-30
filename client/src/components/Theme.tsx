@@ -1,6 +1,5 @@
 import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { orange } from '@material-ui/core/colors';
 
 interface PaletteColor {
     light?: string;
