@@ -42,12 +42,15 @@ const useStyles = makeStyles({
   },
   pos: {
     marginBottom: 12,
+  },
+  paragraph: {
+      lineHeight: 1.6
   }
+
 });
 
 const Details = ({ name, description, price, size }: productType) => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
       <>
@@ -64,9 +67,13 @@ const Details = ({ name, description, price, size }: productType) => {
                 {`size: ${size.metric.width}cm x ${size.metric.height}cm | ${size.imperial.width}" x ${size.imperial.height}"`}
             </Typography>
         :<></>}
-        <Typography variant="body2" component="p">
+        <div style={{
+            maxWidth: '90%'
+        }}>
+        <Typography className={classes.paragraph} variant="body2" component="p">
           {description}
         </Typography>
+        </div>
       </CardContent>
     </Card>
     <PurchaseButtons/>
