@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import API from '../../utils/API';
 import { commerceProductsInterface } from '../../utils/commerceProductsInterface';
 import mongoose from 'mongoose';
 

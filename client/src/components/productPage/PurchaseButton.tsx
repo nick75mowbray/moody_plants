@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,9 +33,11 @@ const PurchaseButtons = ({onAddToCart, productId}:buttonProps) => {
           onClick={() => onAddToCart(productId, 1)}>
             Add to cart
         </Button>
+        <Link to="/cart">
         <Button variant="contained" className={classes.button}>
             Checkout
         </Button>
+        </Link>
     </div>
   );
 }

@@ -32,12 +32,12 @@ function ProductPage({commerceProducts, onAddToCart}) {
     </Link>
     <Box m={1}>
       <Grid container spacing={1}>
-        <Grid item sm={6} mg={12}>
+        <Grid item sm={6}>
           <ImageCarousel 
             images={product.images}
             name={product.name}/>
         </Grid>
-        <Grid item sm={6} mg={12}>
+        <Grid item sm={6}>
           {matchingProduct && <Details 
             name={product.name}
             description={product.description}

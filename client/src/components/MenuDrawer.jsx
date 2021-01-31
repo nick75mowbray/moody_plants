@@ -20,6 +20,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Socials from './Socials';
 import NavLinks from './NavLinks';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -187,9 +188,11 @@ export default function PersistentDrawerLeft({totalItems}) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+          <Link to="/cart" color="inherit">
           <Badge badgeContent={totalItems} color="secondary">
             <ShoppingCartIcon/>
           </Badge>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer

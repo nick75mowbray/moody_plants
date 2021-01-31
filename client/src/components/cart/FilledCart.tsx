@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, Paper, Container, Divider } from '@material-ui/core';
 import Item from './Item';
 
 import { cartInterface } from '../../utils/cartInterface';
@@ -35,9 +35,23 @@ type propsType = {
     cart: cartInterface
 };
 
+type productSizes = {
+        metric: {
+            width: number,
+            height: number
+        },
+        imperial: {
+            width: number,
+            height: number
+        }
+};
+
 const FilledCart = ({commerceProducts, products, cart}: propsType) => {
 
+
     let productImages:string[] = [];
+    let productSizes: productSizes[] = [];
+
     if(products){
 
         cart.line_items.map((cartItem)=>{
@@ -45,6 +59,8 @@ const FilledCart = ({commerceProducts, products, cart}: propsType) => {
             const [matchingProduct] = matchingCommerceProductArray;
             if (matchingProduct){
               productImages.push(matchingProduct.images[2]);  
+              productSizes.push(matchingProduct.size);
+              console.log(productSizes);
             }
             
         })
@@ -52,20 +68,33 @@ const FilledCart = ({commerceProducts, products, cart}: propsType) => {
     
 
     return (
-        <>
-        <Grid container spacing={4}>
-            {cart.line_items.map((item, index) => (
-                <Grid item key={item.id}>
-                    <Item 
-                        image={productImages[index]} 
-                        price={item.price.formatted_with_code}
-                        name={item.name}
-                        quantity={item.quantity}/>
-                   
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center'
+        }}>
+        <Paper style={{
+            marginTop: '4rem',
+            textAlign: 'center',
+            maxWidth: '800px'
+        }}>
+            <Container max-width="xs">
+                <Grid container spacing={4}>
+                    {cart.line_items.map((item, index) => (
+                        <Grid item key={item.id} xs={12} spacing={2}>
+                            <Item 
+                                image={productImages[index]} 
+                                price={item.price.formatted_with_code}
+                                name={item.name}
+                                quantity={item.quantity}
+                                size={productSizes[index]}
+                                />
+                            <Divider/>
+                        </Grid>
+                    ))}
                 </Grid>
-            ))}
-        </Grid>
-        </>
+            </Container>
+        </Paper>
+        </div>
     )
     
 };
