@@ -1,6 +1,7 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 import { Image, Transformation } from 'cloudinary-react';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const Item = ({image, price, name, quantity, size}) => {
     return (
@@ -31,8 +32,17 @@ const Item = ({image, price, name, quantity, size}) => {
             <div>
                 <Typography>{price}</Typography>
             </div>
-            <div>
-                <Typography>{quantity}</Typography>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                alignItems: 'center'
+            }}>
+                <Button>-</Button>
+                    <Typography>{quantity}</Typography>
+                <Button>+</Button>
+                <Button>
+                    <DeleteIcon></DeleteIcon>
+                </Button>
             </div>
         </div>
     )

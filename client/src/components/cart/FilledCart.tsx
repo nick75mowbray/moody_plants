@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Grid, Paper, Container, Divider } from '@material-ui/core';
+import { Typography, Grid, Paper, Container, Divider, Button } from '@material-ui/core';
 import Item from './Item';
 
 import { cartInterface } from '../../utils/cartInterface';
@@ -91,8 +91,26 @@ const FilledCart = ({commerceProducts, products, cart}: propsType) => {
                             <Divider/>
                         </Grid>
                     ))}
+                    <Grid item>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'flex-end'
+                        }}>
+                            <Typography variant="h5">
+                                Subtotal: {cart.subtotal.formatted_with_code}
+                            </Typography>
+                        </div>
+                    </Grid>
                 </Grid>
             </Container>
+            <div>
+                <Button>
+                    Empty Cart
+                </Button>
+                <Button>
+                    Checkout
+                </Button>
+            </div>
         </Paper>
         </div>
     )
