@@ -60,7 +60,7 @@ const Details = ({ name, description, price, size }: productType) => {
           {name}
         </Typography>
         <Typography variant="h5" component="h5">
-          {`${price} AUD`}
+          {price}
         </Typography>
         {size ? 
             <Typography className={classes.pos} color="textSecondary">

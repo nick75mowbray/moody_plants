@@ -8,7 +8,7 @@ import '../components/styles/style.scss';
 import ImageCarousel from '../components/ImageCarousel';
 import Details from '../components/Details';
 
-function ProductPage(props) {
+function ProductPage({commerceProducts}) {
   const [product, setProduct] = useState({})
 
   // When this component mounts, grab the book with the _id of props.match.params.id
@@ -22,11 +22,13 @@ function ProductPage(props) {
       .catch(err => console.log(err));
   }, [])
 
+  const matchingCommerceProductArray = commerceProducts.filter( item => item.permalink === product.commercePermalink);
+  const [matchingProduct] = matchingCommerceProductArray;
   
   return (
     <>
     <Link to="/">
-      <KeyboardBackspaceIcon color="text.primary"/>
+      <KeyboardBackspaceIcon color="textPrimary"/>
     </Link>
     <Box m={1}>
       <Grid container spacing={1}>
@@ -36,12 +38,13 @@ function ProductPage(props) {
             name={product.name}/>
         </Grid>
         <Grid item sm={6} mg={12}>
-          <Details 
+          {matchingProduct && <Details 
             name={product.name}
             description={product.description}
-            price={product.price}
+            price={matchingProduct.price.formatted_with_code}
             size={product.size}
-          />
+          />}
+          
         </Grid>
       </Grid>
     </Box>

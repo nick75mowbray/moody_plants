@@ -61,12 +61,13 @@ function loadProducts() {
             return (
                 <div className="product-card product-container" key={index}>
                 <Link to={"/products/"+product._id} className="product-link">
-                        <ProductCard
+                    {matchingProduct && <ProductCard
                             name={product.name}
                             image={product.images[0]}
-                            price={matchingProduct.price.formatted_with_symbol}
+                            price={matchingProduct.price.formatted_with_code}
                             size={product.size}
-                        />
+                        />}
+                        
                 </Link>
                 </div>
                 )

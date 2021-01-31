@@ -33,7 +33,7 @@ function App() {
         <Route exact path="/account"></Route>
         <Route exact path="/cart"></Route>
         <Route exact path="/login"></Route>
-        <Route exact path="/products/:id"><ProductPage/></Route>
+        <Route exact path="/products/:id"><ProductPage commerceProducts={commerceProducts}/></Route>
       </Switch>
       {console.log(commerceProducts)}
     </Router>
