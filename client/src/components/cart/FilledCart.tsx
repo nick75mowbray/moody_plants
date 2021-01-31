@@ -1,10 +1,23 @@
 import React from 'react';
 import { Typography, Grid, Paper, Container, Divider, Button } from '@material-ui/core';
 import Item from './Item';
-
+import { makeStyles, createStyles, Theme, withStyles } from '@material-ui/core/styles';
 import { cartInterface } from '../../utils/cartInterface';
 import mongoose from 'mongoose';
 import { commerceProductsInterface } from '../../utils/commerceProductsInterface';
+import { green } from '@material-ui/core/colors';
+
+const ColorButton = withStyles((theme: Theme) => ({
+    root: {
+      color: '#fff',
+      margin: '1rem 0',
+      backgroundColor: green[500],
+      padding: '1rem 5rem',
+      '&:hover': {
+        backgroundColor: green[700],
+      },
+    },
+  }))(Button);
 
 // typing for individual products
 interface productType {
@@ -48,7 +61,6 @@ type productSizes = {
 
 const FilledCart = ({commerceProducts, products, cart}: propsType) => {
 
-
     let productImages:string[] = [];
     let productSizes: productSizes[] = [];
 
@@ -60,7 +72,6 @@ const FilledCart = ({commerceProducts, products, cart}: propsType) => {
             if (matchingProduct){
               productImages.push(matchingProduct.images[2]);  
               productSizes.push(matchingProduct.size);
-              console.log(productSizes);
             }
             
         })
@@ -70,12 +81,14 @@ const FilledCart = ({commerceProducts, products, cart}: propsType) => {
     return (
         <div style={{
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexDirection: 'column',
+            maxWidth: '800px'
         }}>
         <Paper style={{
             marginTop: '4rem',
             textAlign: 'center',
-            maxWidth: '800px'
+            padding: '1.5rem'
         }}>
             <Container max-width="xs">
                 <Grid container spacing={4}>
@@ -91,7 +104,9 @@ const FilledCart = ({commerceProducts, products, cart}: propsType) => {
                             <Divider/>
                         </Grid>
                     ))}
-                    <Grid item>
+                    
+                    
+                </Grid>
                         <div style={{
                             display: 'flex',
                             justifyContent: 'flex-end'
@@ -100,18 +115,19 @@ const FilledCart = ({commerceProducts, products, cart}: propsType) => {
                                 Subtotal: {cart.subtotal.formatted_with_code}
                             </Typography>
                         </div>
-                    </Grid>
-                </Grid>
-            </Container>
-            <div>
-                <Button>
-                    Empty Cart
-                </Button>
-                <Button>
-                    Checkout
-                </Button>
-            </div>
+                            </Container>
         </Paper>
+
+            <div style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'flex-end'
+            }}>
+            
+                <ColorButton variant="contained" color="primary">
+                    Checkout
+                </ColorButton>
+            </div>
         </div>
     )
     

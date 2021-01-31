@@ -1,12 +1,6 @@
 import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-interface PaletteColor {
-    light?: string;
-    main: string;
-    dark?: string;
-    contrastText?: string;
-  }
 
 const myTheme = createMuiTheme({
     
@@ -19,6 +13,7 @@ const myTheme = createMuiTheme({
         },
         secondary: {
             main: '#11998e',
+            contrastText: '#fff'
         },
     }, 
     shape: {
