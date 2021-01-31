@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {Image, Transformation} from 'cloudinary-react';
-import './styles/style.scss';
+import '../styles/style.scss';
 
 
 const useStyles = makeStyles({

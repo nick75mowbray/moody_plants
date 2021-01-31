@@ -15,13 +15,21 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function PurchaseButtons() {
+type buttonProps = {
+  onAddToCart: any,
+  productId: string
+}
+
+const PurchaseButtons = ({onAddToCart, productId}:buttonProps) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
         <br></br>
-        <Button variant="contained" className={classes.button}>
+        <Button 
+          variant="contained" 
+          className={classes.button}
+          onClick={() => onAddToCart(productId, 1)}>
             Add to cart
         </Button>
         <Button variant="contained" className={classes.button}>
@@ -30,3 +38,5 @@ export default function PurchaseButtons() {
     </div>
   );
 }
+
+export default PurchaseButtons;

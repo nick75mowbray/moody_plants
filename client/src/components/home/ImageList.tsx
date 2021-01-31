@@ -1,9 +1,9 @@
 import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import API from '../utils/API';
+import API from '../../utils/API';
 import mongoose from 'mongoose';
-import { commerceProductsInterface } from '../utils/commerceProductsInterface';
+import { commerceProductsInterface } from '../../utils/commerceProductsInterface';
 
 // typing for individual products
 interface productType {

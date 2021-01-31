@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/style.scss';
+import '../styles/style.scss';
 import Carousel from 'react-bootstrap/Carousel'
 import ThisCarouselItem from './CarouselItem';
 import {Image, Transformation} from 'cloudinary-react';

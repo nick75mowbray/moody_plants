@@ -5,10 +5,10 @@ import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import { Grid, Box } from '@material-ui/core';
 import API from "../utils/API";
 import '../components/styles/style.scss';
-import ImageCarousel from '../components/ImageCarousel';
-import Details from '../components/Details';
+import ImageCarousel from '../components/productPage/ImageCarousel';
+import Details from '../components/productPage/Details';
 
-function ProductPage({commerceProducts}) {
+function ProductPage({commerceProducts, onAddToCart}) {
   const [product, setProduct] = useState({})
 
   // When this component mounts, grab the book with the _id of props.match.params.id
@@ -43,6 +43,8 @@ function ProductPage({commerceProducts}) {
             description={product.description}
             price={matchingProduct.price.formatted_with_code}
             size={product.size}
+            onAddToCart={onAddToCart}
+            productId={matchingProduct.id}
           />}
           
         </Grid>

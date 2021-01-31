@@ -4,8 +4,6 @@ import {Image, Transformation} from 'cloudinary-react';
 
 
 const CarouselItem = ({image})=>{
-    console.log(image);
-    console.log('carousel loaded');
 
     return (
             

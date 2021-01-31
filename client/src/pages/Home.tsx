@@ -1,6 +1,6 @@
 import React from 'react';
-import ImageList from '../components/ImageList';
-import Hero from '../components/Hero';
+import ImageList from '../components/home/ImageList';
+import Hero from '../components/home/Hero';
 import { commerceProductsInterface } from '../utils/commerceProductsInterface';
 
 type commerceType = {commerceProducts: commerceProductsInterface[]};

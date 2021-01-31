@@ -1,7 +1,7 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import './styles/style.scss';
+import '../styles/style.scss';
 import {Image, Transformation} from 'cloudinary-react';
 
 function Hero() {

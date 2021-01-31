@@ -49,7 +49,24 @@ const useStyles = makeStyles({
 
 });
 
-const Details = ({ name, description, price, size }: productType) => {
+type detailProps = {
+  name:string,
+    size: {
+      metric: {
+          width: number,
+          height: number
+      },
+      imperial: {
+          width: number,
+          height: number
+      }
+    }, 
+  price: number,
+  onAddToCart: any,
+  productId: string
+}
+
+const Details = ({ name, price, size, onAddToCart, productId}:detailProps) => {
   const classes = useStyles();
 
   return (
@@ -71,12 +88,20 @@ const Details = ({ name, description, price, size }: productType) => {
             maxWidth: '90%'
         }}>
         <Typography className={classes.paragraph} variant="body2" component="p">
-          {description}
+        This limited edition fine art print featuring work by Nicholas Mowbray captures the stunning and often unseen details of plants. Using a variety of photography and lighting techniques he captures plants in rich and vibrant colours. This print makes a excellent addition to any home and is printed using top-quality printing techniques.
+        </Typography>
+        <Typography className={classes.paragraph} variant="body2" component="p">
+        Printing will take 3-5 days before shipping.
+        </Typography>
+        <Typography className={classes.paragraph} variant="body2" component="p">
+        Frame not included.
         </Typography>
         </div>
       </CardContent>
     </Card>
-    <PurchaseButtons/>
+    <PurchaseButtons
+      onAddToCart={onAddToCart}
+      productId={productId}/>
     </>
   );
 }

@@ -12,11 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import { Badge } from '@material-ui/core';
 import './styles/style.scss';
 import Logo from '../assets/logo.svg';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -135,10 +131,11 @@ const useStyles = makeStyles((theme) =>
       }),
       marginLeft: 0,
     },
+    
   }),
 );
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft({totalItems}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -190,7 +187,9 @@ export default function PersistentDrawerLeft() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <ShoppingCartIcon/>
+          <Badge badgeContent={totalItems} color="secondary">
+            <ShoppingCartIcon/>
+          </Badge>
         </Toolbar>
       </AppBar>
       <Drawer

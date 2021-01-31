@@ -18,7 +18,7 @@ const myTheme = createMuiTheme({
             main: '#fff'
         },
         secondary: {
-            main: '#eee',
+            main: '#11998e',
         },
     }, 
     shape: {
