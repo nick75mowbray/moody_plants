@@ -1,14 +1,15 @@
 import React from 'react';
 import ImageList from '../components/ImageList';
 import Hero from '../components/Hero';
+import { commerceProductsInterface } from '../utils/commerceProductsInterface';
 
+type commerceType = {commerceProducts: commerceProductsInterface[]};
 
-
-function Home() {
+const Home = ({commerceProducts}: commerceType) => {
     return (
         <>
             <Hero/>
-            <ImageList/>
+            <ImageList commerceProducts={commerceProducts}/>
         </>
     )
 }

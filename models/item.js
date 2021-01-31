@@ -54,6 +54,10 @@ const ItemSchema = new Schema({
     views: {
         type: Number
     },
+    commercePermalink: {
+        type: String,
+        required: true
+    }
 
 });
 

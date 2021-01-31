@@ -1,0 +1,3 @@
+module.exports = {
+    REACT_APP_CHEC_PUBLIC_KEY: 'pk_22556f074b9496398b4300cf1396a6014a8d393c151f8'
+}
