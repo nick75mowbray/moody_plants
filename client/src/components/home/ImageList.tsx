@@ -2,8 +2,9 @@ import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import API from '../../utils/API';
-import mongoose from 'mongoose';
 import { commerceProductsInterface } from '../../utils/commerceProductsInterface';
+import mongoose from 'mongoose';
+
 
 // typing for individual products
 interface productType {
@@ -29,28 +30,14 @@ interface productType {
 
 // create type for an array of products
 type productStateType = productType[];
-type commerceType = {commerceProducts: commerceProductsInterface[]};
 
+type propsType = {
+    commerceProducts: commerceProductsInterface[],
+    products: productStateType | undefined
+};
 
+const ImageList = ({commerceProducts, products}: propsType) => {
 
-const ImageList = ({commerceProducts}:commerceType)=> {
-
-const [products, setProducts] = useState<productStateType | undefined>(undefined);
-
-// load all products
-useEffect(()=>{
-    loadProducts();
-}, []);
-
-function loadProducts() {
-    API.getProducts()
-    .then(res => {
-        setProducts(res.data);
-        }
-        )
-        
-        .catch(err=>console.error(err));
-}
 
     return (
         <div className="image-grid product-list">

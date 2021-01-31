@@ -2,12 +2,40 @@ import React from 'react';
 import { Container, Typography } from '@material-ui/core';
 import { cartInterface } from '../utils/cartInterface';
 import EmptyCart from '../components/cart/EmptyCart';
-import FilledCart from '../components/cart/FilledCart'
+import FilledCart from '../components/cart/FilledCart';
+import mongoose from 'mongoose';
+import { commerceProductsInterface } from '../utils/commerceProductsInterface';
 
-type cartProps = {
-    cart: cartInterface
+// typing for individual products
+interface productType {
+    _id: mongoose.Types.ObjectId,
+    name: string,
+    inventory: number,
+    images: string[],
+    size: {
+        metric: {
+            width: number,
+            height: number
+        },
+        imperial: {
+            width: number,
+            height: number
+        }
+    }, 
+    price: number, 
+    description: string,
+    views: number,
+    commercePermalink: string
 }
-const Cart = ({cart}:cartProps) => {
+
+
+type propsType = {
+    commerceProducts: commerceProductsInterface[],
+    products: productType[] | undefined,
+    cart: cartInterface
+};
+
+const Cart = ({commerceProducts, products, cart}: propsType) => {
     const isEmpty = !cart.line_items.length;
 
 
@@ -15,7 +43,7 @@ const Cart = ({cart}:cartProps) => {
         <Container>
             <div >
                 <Typography>Your Cart</Typography>
-                {isEmpty ? <EmptyCart/>:<FilledCart/>}
+                {isEmpty ? <EmptyCart/>:<FilledCart cart={cart} commerceProducts={commerceProducts} products={products}/>}
             </div>
         </Container>
     )

@@ -12,7 +12,57 @@ import { commerce } from './lib/commerce';
 import { cartInterface } from './utils/cartInterface';
 
 
-function App() {
+import API from './utils/API';
+import mongoose from 'mongoose';
+import { commerceProductsInterface } from './utils/commerceProductsInterface';
+
+// typing for individual products
+interface productType {
+    _id: mongoose.Types.ObjectId,
+    name: string,
+    inventory: number,
+    images: string[],
+    size: {
+        metric: {
+            width: number,
+            height: number
+        },
+        imperial: {
+            width: number,
+            height: number
+        }
+    }, 
+    price: number, 
+    description: string,
+    views: number,
+    commercePermalink: string
+}
+
+// create type for an array of products
+type productStateType = productType[];
+type commerceType = {commerceProducts: commerceProductsInterface[]};
+
+
+
+const App = ()=> {
+
+const [products, setProducts] = useState<productStateType | undefined>(undefined);
+
+// load all products
+useEffect(()=>{
+    loadProducts();
+}, []);
+
+function loadProducts() {
+    API.getProducts()
+    .then(res => {
+        setProducts(res.data);
+        }
+        )
+        
+        .catch(err=>console.error(err));
+}
+
 
   const [commerceProducts, setCommerceProducts] = useState([]);
   const [cart, setCart] = useState<cartInterface>({
@@ -86,11 +136,11 @@ function App() {
       <MenuDrawer totalItems={cart.total_items}/>
       <Switch>
         <Route exact path={["/","/products"]}>
-          <Home commerceProducts={commerceProducts}/></Route>
+          <Home commerceProducts={commerceProducts} products={products}/></Route>
         <Route exact path="/about"></Route>
         <Route exact path="/account"></Route>
         <Route exact path="/cart">
-          <Cart cart={cart}/>
+          <Cart cart={cart} products={products} commerceProducts={commerceProducts}/>
         </Route>
         <Route exact path="/login"></Route>
         <Route exact path="/products/:id"><ProductPage commerceProducts={commerceProducts} onAddToCart={handleAddToCart}/></Route>
