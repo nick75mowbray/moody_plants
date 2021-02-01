@@ -6,6 +6,7 @@ import MyCustomTheme from './components/Theme';
 import Home from './pages/Home';
 import ProductPage from './pages/ProductPage';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 
 import './components/styles/style.scss';
 import { commerce } from './lib/commerce';
@@ -159,6 +160,10 @@ function loadProducts() {
         </Route>
         <Route exact path="/login"></Route>
         <Route exact path="/products/:id"><ProductPage commerceProducts={commerceProducts} onAddToCart={handleAddToCart}/></Route>
+        <Route exact path="/checkout">
+          <Checkout
+            cart={cart}
+        ></Checkout></Route>
       </Switch>
     </Router>
     </MyCustomTheme>

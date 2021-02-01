@@ -1,11 +1,12 @@
 import React from 'react';
 import { Typography, Grid, Paper, Container, Divider, Button } from '@material-ui/core';
 import Item from './Item';
-import { makeStyles, createStyles, Theme, withStyles } from '@material-ui/core/styles';
+import { Theme, withStyles } from '@material-ui/core/styles';
 import { cartInterface } from '../../utils/cartInterface';
 import mongoose from 'mongoose';
 import { commerceProductsInterface } from '../../utils/commerceProductsInterface';
 import { green } from '@material-ui/core/colors';
+import { Link } from 'react-router-dom';
 
 const ColorButton = withStyles((theme: Theme) => ({
     root: {
@@ -104,7 +105,7 @@ const FilledCart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFro
             <Container>
                 <Grid container spacing={4}>
                     {cart.line_items.map((item, index) => (
-                        <Grid item key={item.id} xs={12} spacing={2}>
+                        <Grid item key={item.id} xs={12}>
                             <Item 
                                 image={productImages[index]} 
                                 price={item.price.formatted_with_code}
@@ -136,11 +137,13 @@ const FilledCart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFro
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'flex-end'
-            }}>
+                }}>
             
-                <ColorButton variant="contained" color="primary">
-                    Checkout
-                </ColorButton>
+                <Link to="/checkout">
+                    <ColorButton variant="contained" color="primary">
+                        Checkout
+                    </ColorButton>
+                </Link>
             </div>
             </div>
         </div>

@@ -5,8 +5,6 @@ import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -192,7 +190,7 @@ export default function PersistentDrawerLeft({totalItems}) {
             />
           </div>
           {/* hide cart if on cart page */}
-          {location.pathname !== '/cart' &&  <Badge component={Link} to="/cart" badgeContent={totalItems} color="secondary">
+          {!(location.pathname == '/cart' || location.pathname == '/checkout') &&  <Badge component={Link} to="/cart" badgeContent={totalItems} color="secondary">
             <ShoppingCartIcon/>
           </Badge>}
          
