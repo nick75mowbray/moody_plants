@@ -8,6 +8,7 @@ import Payment from '../components/checkout/Payment';
 import Confirmation from '../components/checkout/Confirmation';
 import { commerce } from '../lib/commerce';
 import { cartInterface } from '../utils/cartInterface';
+import { AnyARecord } from "dns";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,6 +35,7 @@ const Checkout = ({cart}: checkoutProps) => {
     const classes = useStyles();
     const [activeStep, setActiveStep ] = useState(0);
     const [checkoutToken, setCheckoutToken] = useState<any>();
+    const [shippingData, setShippingData] = useState({});
 
     useEffect(()=>{
         const generateToken = async () => {
@@ -49,9 +51,17 @@ const Checkout = ({cart}: checkoutProps) => {
     }, [cart]);
 
     const Form = () => activeStep === 0
-        ? <Shipping checkoutToken={checkoutToken}/>
-        : <Payment/>
+        ? <Shipping checkoutToken={checkoutToken} next={next}/>
+        : <Payment shippingData={shippingData} checkoutToken={checkoutToken} onbackStep={backStep}/>
 
+
+    const nextStep = () => setActiveStep((previousActiveStep)=>previousActiveStep+1)
+    const backStep = () => setActiveStep((previousActiveStep)=>previousActiveStep-1)
+
+    const next = (data:any) => {
+        setShippingData(data);
+        nextStep();
+    }    
 
     return (
         <div>
