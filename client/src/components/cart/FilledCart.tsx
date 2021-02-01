@@ -41,13 +41,6 @@ interface productType {
     commercePermalink: string
 }
 
-
-type propsType = {
-    commerceProducts: commerceProductsInterface[],
-    products: productType[] | undefined,
-    cart: cartInterface
-};
-
 type productSizes = {
         metric: {
             width: number,
@@ -58,8 +51,23 @@ type productSizes = {
             height: number
         }
 };
+interface updateCart {
+    (productId: string, quantity:number): Promise<void>
+}
 
-const FilledCart = ({commerceProducts, products, cart}: propsType) => {
+interface removeFromCart {
+    (productId: string): Promise<void>
+}
+
+type propsType = {
+    commerceProducts: commerceProductsInterface[],
+    products: productType[] | undefined,
+    cart: cartInterface,
+    onUpdateCart: updateCart,
+    onRemoveFromCart: removeFromCart
+};
+
+const FilledCart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFromCart}: propsType) => {
 
     let productImages:string[] = [];
     let productSizes: productSizes[] = [];
@@ -83,14 +91,17 @@ const FilledCart = ({commerceProducts, products, cart}: propsType) => {
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
-            maxWidth: '800px'
+            width: '100%'
         }}>
+            <div style={{
+                maxWidth: '800px'
+            }}>
         <Paper style={{
             marginTop: '4rem',
             textAlign: 'center',
             padding: '1.5rem'
         }}>
-            <Container max-width="xs">
+            <Container>
                 <Grid container spacing={4}>
                     {cart.line_items.map((item, index) => (
                         <Grid item key={item.id} xs={12} spacing={2}>
@@ -100,6 +111,9 @@ const FilledCart = ({commerceProducts, products, cart}: propsType) => {
                                 name={item.name}
                                 quantity={item.quantity}
                                 size={productSizes[index]}
+                                onUpdateCart={onUpdateCart}
+                                onRemoveFromCart={onRemoveFromCart}
+                                productId={item.id}
                                 />
                             <Divider/>
                         </Grid>
@@ -127,6 +141,7 @@ const FilledCart = ({commerceProducts, products, cart}: propsType) => {
                 <ColorButton variant="contained" color="primary">
                     Checkout
                 </ColorButton>
+            </div>
             </div>
         </div>
     )

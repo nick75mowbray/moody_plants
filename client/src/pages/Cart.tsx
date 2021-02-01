@@ -27,15 +27,23 @@ interface productType {
     views: number,
     commercePermalink: string
 }
+interface updateCart {
+    (productId: string, quantity:number): Promise<void>
+}
 
+interface removeFromCart {
+    (productId: string): Promise<void>
+}
 
 type propsType = {
     commerceProducts: commerceProductsInterface[],
     products: productType[] | undefined,
-    cart: cartInterface
+    cart: cartInterface,
+    onUpdateCart: updateCart,
+    onRemoveFromCart: removeFromCart
 };
 
-const Cart = ({commerceProducts, products, cart}: propsType) => {
+const Cart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFromCart}: propsType) => {
     const isEmpty = !cart.line_items.length;
 
 
@@ -43,7 +51,15 @@ const Cart = ({commerceProducts, products, cart}: propsType) => {
         <Container>
             <div >
                 <Typography>Your Cart</Typography>
-                {isEmpty ? <EmptyCart/>:<FilledCart cart={cart} commerceProducts={commerceProducts} products={products}/>}
+                {isEmpty ? 
+                    <EmptyCart/>:
+                    <FilledCart 
+                        cart={cart} 
+                        commerceProducts={commerceProducts} 
+                        products={products}
+                        onUpdateCart={onUpdateCart}
+                        onRemoveFromCart={onRemoveFromCart}
+                        />}
             </div>
         </Container>
     )

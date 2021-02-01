@@ -20,7 +20,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Socials from './Socials';
 import NavLinks from './NavLinks';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -140,6 +140,9 @@ export default function PersistentDrawerLeft({totalItems}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const location = useLocation();
+
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -188,11 +191,12 @@ export default function PersistentDrawerLeft({totalItems}) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <Link to="/cart" color="inherit">
-          <Badge badgeContent={totalItems} color="secondary">
+          {/* hide cart if on cart page */}
+          {location.pathname !== '/cart' &&  <Badge component={Link} to="/cart" badgeContent={totalItems} color="secondary">
             <ShoppingCartIcon/>
-          </Badge>
-          </Link>
+          </Badge>}
+         
+          
         </Toolbar>
       </AppBar>
       <Drawer

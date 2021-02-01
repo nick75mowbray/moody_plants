@@ -129,7 +129,16 @@ function loadProducts() {
     fetchCart();
   }, []);
 
-  console.log(`cart: ${JSON.stringify(cart)}`);
+  const handleUpdateCartQty = async (productId:string, quantity:number) => {
+    const { cart } = await commerce.cart.update(productId, { quantity });
+    setCart(cart);
+  }
+
+  const handleRemoveFromCart = async (productId:string) => {
+    const { cart } = await commerce.cart.remove(productId);
+    setCart(cart);
+  }
+
   return (
     <MyCustomTheme>
     <Router>
@@ -140,7 +149,13 @@ function loadProducts() {
         <Route exact path="/about"></Route>
         <Route exact path="/account"></Route>
         <Route exact path="/cart">
-          <Cart cart={cart} products={products} commerceProducts={commerceProducts}/>
+          <Cart 
+            cart={cart} 
+            products={products} 
+            commerceProducts={commerceProducts}
+            onUpdateCart={handleUpdateCartQty}
+            onRemoveFromCart={handleRemoveFromCart}
+            />
         </Route>
         <Route exact path="/login"></Route>
         <Route exact path="/products/:id"><ProductPage commerceProducts={commerceProducts} onAddToCart={handleAddToCart}/></Route>

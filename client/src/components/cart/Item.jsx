@@ -3,7 +3,7 @@ import { Typography, Button } from '@material-ui/core';
 import { Image, Transformation } from 'cloudinary-react';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const Item = ({image, price, name, quantity, size}) => {
+const Item = ({image, price, name, quantity, size, onUpdateCart, onRemoveFromCart, productId}) => {
     return (
         <div style={{
             display: 'flex',
@@ -37,11 +37,17 @@ const Item = ({image, price, name, quantity, size}) => {
                 justifyContent: 'space-around',
                 alignItems: 'center'
             }}>
-                <Button>-</Button>
+                <Button onClick={()=>{
+                    onUpdateCart(productId, quantity-1);
+                }}>-</Button>
                     <Typography>{quantity}</Typography>
-                <Button>+</Button>
+                <Button onClick={()=>{
+                    onUpdateCart(productId, quantity+1);
+                }}>+</Button>
                 <Button>
-                    <DeleteIcon></DeleteIcon>
+                    <DeleteIcon onClick={()=>{
+                        onRemoveFromCart(productId);
+                    }}></DeleteIcon>
                 </Button>
             </div>
         </div>
