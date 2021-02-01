@@ -33,23 +33,23 @@ type checkoutProps = {
 const Checkout = ({cart}: checkoutProps) => {
     const classes = useStyles();
     const [activeStep, setActiveStep ] = useState(0);
-    const [checkoutToken, setCheckoutToken] = useState<string>();
+    const [checkoutToken, setCheckoutToken] = useState<any>();
 
     useEffect(()=>{
         const generateToken = async () => {
             try {
                 const token = await commerce.checkout.generateToken(cart.id, { type: 'cart'});
-                console.log(`token is ${token}`);
+                console.log(`token is ${JSON.stringify(token)}`);
                 setCheckoutToken(token);
             } catch (error){
                 console.error(error)
             }
         }
         generateToken();
-    }, []);
+    }, [cart]);
 
     const Form = () => activeStep === 0
-        ? <Shipping/>
+        ? <Shipping checkoutToken={checkoutToken}/>
         : <Payment/>
 
 
@@ -67,7 +67,7 @@ const Checkout = ({cart}: checkoutProps) => {
                     </Stepper>
                     { activeStep === steps.length ? 
                         <Confirmation/> 
-                        : <Form/>
+                        : checkoutToken && <Form/>
                     }
                 </Paper>
             </main>
