@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-
+import { Link, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
@@ -28,14 +28,19 @@ const useStyles = makeStyles((theme: Theme) =>
 const steps: string[] = ['shipping address', 'Payment details'];
 
 type checkoutProps = {
-    cart: cartInterface
+    cart: cartInterface,
+    order: any,
+    onCaptureCheckout: any,
+    error: string
 }
 
-const Checkout = ({cart}: checkoutProps) => {
+const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
     const classes = useStyles();
     const [activeStep, setActiveStep ] = useState(0);
     const [checkoutToken, setCheckoutToken] = useState<any>();
     const [shippingData, setShippingData] = useState({});
+    const [isFinished, setIsFinished] = useState(false);
+    const history:any = useHistory();
 
     useEffect(()=>{
         const generateToken = async () => {
@@ -44,7 +49,7 @@ const Checkout = ({cart}: checkoutProps) => {
                 console.log(`token is ${JSON.stringify(token)}`);
                 setCheckoutToken(token);
             } catch (error){
-                console.error(error)
+                history.pushState('/');
             }
         }
         generateToken();
@@ -52,7 +57,48 @@ const Checkout = ({cart}: checkoutProps) => {
 
     const Form = () => activeStep === 0
         ? <Shipping checkoutToken={checkoutToken} next={next}/>
-        : <Payment shippingData={shippingData} checkoutToken={checkoutToken} onbackStep={backStep}/>
+        : <Payment 
+            shippingData={shippingData} 
+            checkoutToken={checkoutToken} 
+            onbackStep={backStep}
+            onCaptureCheckout={onCaptureCheckout}
+            nextStep={nextStep}
+            timeout={timeout}
+            />
+
+    const timeout = () => {
+        setTimeout(()=>{
+            setIsFinished(true);
+        }, 3000)
+    }
+
+    let Confirmation = () => order.customer ? (
+        (
+            <div>
+                Confirmation
+                <Typography>Thankyou for your purchase, {order.customer.firstname} {order.customer.lastname}</Typography>
+                <Typography> order ref: {order.customer.reference}</Typography>
+                <Button component={Link} to="/" type="button">Back to site</Button>
+            </div>
+        )
+    )  : isFinished ? (
+        <div>
+        Confirmation
+        <Typography>Thankyou for your purchase</Typography>
+        <Button component={Link} to="/" type="button">Back to site</Button>
+    </div>
+    ) : (
+        <div>
+            <CircularProgress/>
+        </div>
+    );   
+    
+    if(error) {
+        <>
+        <Typography variant="h5">Error: {error}</Typography>
+        <Button component={Link} to="/" type="button">Back to site</Button>
+        </>
+    }
 
 
     const nextStep = () => setActiveStep((previousActiveStep)=>previousActiveStep+1)

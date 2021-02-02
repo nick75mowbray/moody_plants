@@ -17,8 +17,6 @@ import API from './utils/API';
 import mongoose from 'mongoose';
 import { commerceProductsInterface } from './utils/commerceProductsInterface';
 
-console.log(process.env.REACT_APP_COMMERCE_KEY);
-
 // typing for individual products
 interface productType {
     _id: mongoose.Types.ObjectId,
@@ -50,6 +48,52 @@ type commerceType = {commerceProducts: commerceProductsInterface[]};
 const App = ()=> {
 
 const [products, setProducts] = useState<productStateType | undefined>(undefined);
+const [commerceProducts, setCommerceProducts] = useState([]);
+const [cart, setCart] = useState<cartInterface>({
+  id:"",
+  created:0,
+  updated:0,
+  expires:0,
+  total_items:0,
+  total_unique_items:0,
+  subtotal: {
+      raw:0,
+      formatted:"",
+      formatted_with_symbol:"",
+      formatted_with_code:""
+  },
+  discount_code:[],
+  hosted_checkout_url:"",
+  line_items: [{
+    id:"",
+      product_id:"",
+      name:"",
+      product_name:"",
+      media:[],
+      sku:"",
+      permalink:"",
+      quantity:0,
+      price: {
+          raw:0,
+          formatted:"",
+          formatted_with_symbol:"",
+          formatted_with_code:""
+          },
+      line_total: {
+          raw:0,
+          formatted:"",
+          formatted_with_symbol:"",
+          formatted_with_code:""
+          },
+      variants:[]
+  }],
+  currency: {
+      code:"",
+      symbol:""
+  }
+});
+const [order, setOrder] = useState<any>({});
+const [errorMessage, setErrorMessage] = useState('');
 
 // load all products
 useEffect(()=>{
@@ -67,50 +111,6 @@ function loadProducts() {
 }
 
 
-  const [commerceProducts, setCommerceProducts] = useState([]);
-  const [cart, setCart] = useState<cartInterface>({
-    id:"",
-    created:0,
-    updated:0,
-    expires:0,
-    total_items:0,
-    total_unique_items:0,
-    subtotal: {
-        raw:0,
-        formatted:"",
-        formatted_with_symbol:"",
-        formatted_with_code:""
-    },
-    discount_code:[],
-    hosted_checkout_url:"",
-    line_items: [{
-      id:"",
-        product_id:"",
-        name:"",
-        product_name:"",
-        media:[],
-        sku:"",
-        permalink:"",
-        quantity:0,
-        price: {
-            raw:0,
-            formatted:"",
-            formatted_with_symbol:"",
-            formatted_with_code:""
-            },
-        line_total: {
-            raw:0,
-            formatted:"",
-            formatted_with_symbol:"",
-            formatted_with_code:""
-            },
-        variants:[]
-    }],
-    currency: {
-        code:"",
-        symbol:""
-    }
-  });
   
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -142,6 +142,22 @@ function loadProducts() {
     setCart(cart);
   }
 
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+    setCart(newCart);
+  }
+
+  const handleCaptureCheckout = async (checkoutTokenId:string, newOrder:any) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
+      setOrder(incomingOrder);
+      refreshCart();
+    } catch (error){
+      console.error(error);
+      setErrorMessage(error.data.error.message);
+    }
+  }
+
   return (
     <MyCustomTheme>
     <Router>
@@ -165,6 +181,9 @@ function loadProducts() {
         <Route exact path="/checkout">
           <Checkout
             cart={cart}
+            order={order}
+            onCaptureCheckout={handleCaptureCheckout}
+            error={errorMessage}
         ></Checkout></Route>
       </Switch>
     </Router>
