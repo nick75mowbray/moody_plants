@@ -17,6 +17,8 @@ import API from './utils/API';
 import mongoose from 'mongoose';
 import { commerceProductsInterface } from './utils/commerceProductsInterface';
 
+console.log(process.env.REACT_APP_COMMERCE_KEY);
+
 // typing for individual products
 interface productType {
     _id: mongoose.Types.ObjectId,
