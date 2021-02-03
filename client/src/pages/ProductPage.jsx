@@ -18,16 +18,17 @@ function ProductPage({commerceProducts, onAddToCart}) {
     // load product data
     API.getProduct(id)
       .then(res => {
-        setProduct(res.data);
-      console.log(res.data);})
-      .catch(err => console.log(err));
-      // update product page views
+        setProduct(res.data);  
+        // update product page views
     API.updateViews(id, {views: product.views+1})
         .then(res => {
           console.log(`update views running id:${id}, views:${product.views}`);
           setProduct(res.data);
         console.log(res.data);})
         .catch(err => console.log(err));
+      console.log(res.data);})
+      .catch(err => console.log(err));
+    
   }, [])
 
   const matchingCommerceProductArray = commerceProducts.filter( item => item.permalink === product.commercePermalink);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
 
 
 const myTheme = createMuiTheme({
@@ -9,10 +10,13 @@ const myTheme = createMuiTheme({
             black: '#2B2B2B'
         },
         primary: {
-            main: '#fff'
+            main: '#fff',
+            contrastText: '#2B2B2B'
         },
         secondary: {
-            main: '#11998e',
+            light: '#ff7961',
+            main: '#f44336',
+            dark: '#ba000d',
             contrastText: '#fff'
         },
     }, 
