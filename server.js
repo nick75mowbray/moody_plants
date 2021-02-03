@@ -5,6 +5,26 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// auth0 login uri
+var axios = require("axios").default;
+
+var options = {
+  method: 'PATCH',
+  url: 'https://dev-n4ayh-gg.au.auth0.com/api/v2/clients/JLf5qYWZQrJ8RfYaV1t9Z75XXTfyb0gc',
+  headers: {
+    'content-type': 'application/json',
+    authorization: 'Bearer API2_ACCESS_TOKEN',
+    'cache-control': 'no-cache'
+  },
+  data: {initiate_login_uri: 'https://www.moodyplants.com/login/'}
+};
+
+axios.request(options).then(function (response) {
+  console.log(response.data);
+}).catch(function (error) {
+  console.error(error);
+});
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -40,23 +60,5 @@ app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-// auth0 login uri
-var axios = require("axios").default;
 
-var options = {
-  method: 'PATCH',
-  url: 'https://dev-n4ayh-gg.au.auth0.com/api/v2/clients/JLf5qYWZQrJ8RfYaV1t9Z75XXTfyb0gc',
-  headers: {
-    'content-type': 'application/json',
-    authorization: 'Bearer API2_ACCESS_TOKEN',
-    'cache-control': 'no-cache'
-  },
-  data: {initiate_login_uri: 'https://www.moodyplants.com/login/'}
-};
-
-axios.request(options).then(function (response) {
-  console.log(response.data);
-}).catch(function (error) {
-  console.error(error);
-});
 

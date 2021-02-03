@@ -37,6 +37,8 @@ function ProductPage({commerceProducts, onAddToCart}) {
     <Link to="/">
       <KeyboardBackspaceIcon color="textPrimary"/>
     </Link>
+    {product && product.views}
+    
     <Box m={1}>
       <Grid container spacing={1}>
         <Grid item sm={6}>
