@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import ProductPage from './pages/ProductPage';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import Account from './pages/Account';
 
 import './components/styles/style.scss';
 import { commerce } from './lib/commerce';
@@ -166,7 +167,9 @@ function loadProducts() {
         <Route exact path={["/","/products"]}>
           <Home commerceProducts={commerceProducts} products={products}/></Route>
         <Route exact path="/about"></Route>
-        <Route exact path="/account"></Route>
+        <Route exact path="/account">
+          <Account/>
+        </Route>
         <Route exact path="/cart">
           <Cart 
             cart={cart} 

@@ -5,6 +5,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import './styles/style.scss';
 import Login from '../components/Login';
 import Logout from '../components/Logout';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -16,9 +17,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+
+    
+  
+
 function NavLinks(){
     const classes = useStyles();
-
+    
+    const { user, isAuthenticated, isLoading } = useAuth0();
+  
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
 
     return (
         <>
@@ -42,8 +52,9 @@ function NavLinks(){
                      
                         <div className="border-gradient">
                             <Link className="drawer-link" color="inherit" to="/login">
-                                <Login/>
+                                {isAuthenticated ? 
                                 <Logout/>
+                                : <Login/>}
                             </Link>
                         </div>
                         
