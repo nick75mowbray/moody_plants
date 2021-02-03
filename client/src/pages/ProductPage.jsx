@@ -24,6 +24,7 @@ function ProductPage({commerceProducts, onAddToCart}) {
       // update product page views
     API.updateViews(id, {views: product.views+1})
         .then(res => {
+          console.log(`update views running id:${id}, views:${product.views}`);
           setProduct(res.data);
         console.log(res.data);})
         .catch(err => console.log(err));
