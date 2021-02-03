@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Link} from 'react-router-dom';
 import { List, ListItem, Typography } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import './styles/style.scss';
+import Login from '../components/Login';
+import Logout from '../components/Logout';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,7 +41,10 @@ function NavLinks(){
                         </div>
                      
                         <div className="border-gradient">
-                            <Link className="drawer-link" color="inherit" to="/login">LOGIN</Link>
+                            <Link className="drawer-link" color="inherit" to="/login">
+                                <Login/>
+                                <Logout/>
+                            </Link>
                         </div>
                         
                 </Typography>
