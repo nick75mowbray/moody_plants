@@ -154,7 +154,7 @@ export default function PersistentDrawerLeft({totalItems}) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="static" className="navBar banner"
+        position="fixed" className="navBar banner"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -202,6 +202,7 @@ export default function PersistentDrawerLeft({totalItems}) {
         variant="persistent"
         anchor="left"
         open={open}
+        onClose={handleDrawerClose}
         classes={{
           paper: classes.drawerPaper,
         }}

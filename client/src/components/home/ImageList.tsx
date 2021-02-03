@@ -46,12 +46,17 @@ const ImageList = ({commerceProducts, products}: propsType) => {
             return (
                 <div className="product-card product-container" key={index}>
                 <Link to={"/products/"+product._id} className="product-link">
-                    {matchingProduct && <ProductCard
+                    {matchingProduct ? <ProductCard
                             name={product.name}
                             image={product.images[0]}
                             price={matchingProduct.price.formatted_with_code}
                             size={product.size}
-                        />}
+                        /> : <ProductCard
+                        name={product.name}
+                        image={product.images[0]}
+                        price='loading'
+                        size={product.size}
+                    />}
                         
                 </Link>
                 </div>

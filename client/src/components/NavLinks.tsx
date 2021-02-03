@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link} from 'react-router-dom';
-import { List, ListItem, Typography } from '@material-ui/core';
+import { List, ListItem, Typography, CssBaseline } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import './styles/style.scss';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
   
-
 function NavLinks(){
     const classes = useStyles();
     const { loginWithRedirect, logout } = useAuth0();
@@ -29,6 +28,7 @@ function NavLinks(){
 
     return (
         <>
+        <CssBaseline />
                 <Typography className={classes.root}>
                     
                         <div className="border-gradient">

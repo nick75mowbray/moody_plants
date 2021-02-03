@@ -17,7 +17,6 @@ import { cartInterface } from './utils/cartInterface';
 import API from './utils/API';
 import mongoose from 'mongoose';
 import { commerceProductsInterface } from './utils/commerceProductsInterface';
-import { CssBaseline } from '@material-ui/core';
 
 // typing for individual products
 interface productType {
@@ -163,7 +162,6 @@ function loadProducts() {
   return (
     <MyCustomTheme>
     <Router>
-      <CssBaseline/>
       <MenuDrawer totalItems={cart.total_items}/>
       <Switch>
         <Route exact path={["/","/products"]}>
