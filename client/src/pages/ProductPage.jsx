@@ -17,16 +17,16 @@ function ProductPage({commerceProducts, onAddToCart}) {
   useEffect(() => {
     // load product data
     API.getProduct(id)
-      .then(res => {
+      .then(result => {
         console.log(product);
-        setProduct(res.data);  
+        setProduct(result.data);  
         // update product page views
-    API.updateViews(id, {views: product.views+1})
-        .then(res => {
-          console.log(`update views running id:${id}, views:${product.views}`);
-          setProduct(res.data);
-        console.log(res.data);})
-        .catch(err => console.log(err));
+        API.updateViews(id, {views: result.views+1})
+            .then(res => {
+              console.log(`update views running id:${id}, views:${result.data.views}`);
+              setProduct(res.data);
+            console.log(res.data);})
+            .catch(err => console.log(err));
       console.log(res.data);})
       .catch(err => console.log(err));
     
