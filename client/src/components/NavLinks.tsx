@@ -1,10 +1,8 @@
 import React from 'react';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { List, ListItem, Typography } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import './styles/style.scss';
-import Login from '../components/Login';
-import Logout from '../components/Logout';
 import { useAuth0 } from '@auth0/auth0-react';
 
 
@@ -17,8 +15,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
-    
   
 
 function NavLinks(){
@@ -70,6 +66,7 @@ function NavLinks(){
                                 LOGIN
                             </Link>
                         </div>}
+
                 </Typography>
 
         </>
