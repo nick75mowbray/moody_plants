@@ -43,7 +43,6 @@ const ImageList = ({commerceProducts, products}: propsType) => {
         {products ? products.map((product, index)=>{
             const matchingCommerceProductArray = commerceProducts.filter( item => item.permalink === product.commercePermalink);
             const [matchingProduct] = matchingCommerceProductArray;
-            console.log(matchingProduct);
             return (
                 <div className="product-card product-container" key={index}>
                 <Link to={"/products/"+product._id} className="product-link">

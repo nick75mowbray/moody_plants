@@ -18,6 +18,7 @@ function ProductPage({commerceProducts, onAddToCart}) {
     // load product data
     API.getProduct(id)
       .then(res => {
+        console.log(product);
         setProduct(res.data);  
         // update product page views
     API.updateViews(id, {views: product.views+1})
