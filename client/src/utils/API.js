@@ -10,7 +10,7 @@ export default {
     return axios.get(`/api/products/${id}`);
   },
   // updates the product, used for updating page views
-  updateViews: function(id) {
-    return axios.put(`/api/products/${id}`);
+  updateViews: function(id, body) {
+    return axios.put(`/api/products/${id}`, body);
     }
 };
