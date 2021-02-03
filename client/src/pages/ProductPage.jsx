@@ -27,7 +27,7 @@ function ProductPage({commerceProducts, onAddToCart}) {
               setProduct(res.data);
             console.log(res.data);})
             .catch(err => console.log(err));
-      console.log(res.data);})
+      console.log(result.data);})
       .catch(err => console.log(err));
     
   }, [])
