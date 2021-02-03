@@ -180,6 +180,7 @@ function loadProducts() {
             />
         </Route>
         <Route exact path="/login"></Route>
+        <Route exact path="/logout"></Route>
         <Route exact path="/products/:id"><ProductPage commerceProducts={commerceProducts} onAddToCart={handleAddToCart}/></Route>
         <Route exact path="/checkout">
           <Checkout

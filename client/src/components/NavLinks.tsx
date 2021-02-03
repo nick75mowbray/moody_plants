@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function NavLinks(){
     const classes = useStyles();
+    const { loginWithRedirect, logout } = useAuth0();
     
     const { user, isAuthenticated, isLoading } = useAuth0();
   
@@ -49,15 +50,26 @@ function NavLinks(){
                         <div className="border-gradient">
                             <Link className="drawer-link" color="inherit" to="/cart">CART</Link>
                         </div>
-                     
-                        <div className="border-gradient">
-                            <Link className="drawer-link" color="inherit" to="/login">
-                                {isAuthenticated ? 
-                                <Logout/>
-                                : <Login/>}
-                            </Link>
-                        </div>
+                     {isAuthenticated ? 
+                                <div className="border-gradient">
+                                <Link 
+                                    className="drawer-link" 
+                                    color="inherit" 
+                                    to="/logout" 
+                                    onClick={() => logout({ returnTo: window.location.origin })}>
+                                    LOGOUT
+                                </Link>
+                            </div>    
                         
+                        : <div className="border-gradient">
+                            <Link 
+                                className="drawer-link" 
+                                color="inherit" 
+                                to="/login" 
+                                onClick={() => loginWithRedirect()}>
+                                LOGIN
+                            </Link>
+                        </div>}
                 </Typography>
 
         </>

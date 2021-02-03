@@ -11,15 +11,22 @@ import Details from '../components/productPage/Details';
 function ProductPage({commerceProducts, onAddToCart}) {
   const [product, setProduct] = useState({})
 
-  // When this component mounts, grab the book with the _id of props.match.params.id
+  // When this component mounts, grab the product with the _id of props.match.params.id
   // e.g. localhost:3000/products/599dcb67f0f16317844583fc
   const {id} = useParams();
   useEffect(() => {
+    // load product data
     API.getProduct(id)
       .then(res => {
         setProduct(res.data);
       console.log(res.data);})
       .catch(err => console.log(err));
+      // update product page views
+    API.updateViews(id, {views: product.views+1})
+        .then(res => {
+          setProduct(res.data);
+        console.log(res.data);})
+        .catch(err => console.log(err));
   }, [])
 
   const matchingCommerceProductArray = commerceProducts.filter( item => item.permalink === product.commercePermalink);
