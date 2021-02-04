@@ -7,18 +7,8 @@ import mongoose from 'mongoose';
 import { commerceProductsInterface } from '../../utils/commerceProductsInterface';
 import { green } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom';
+import CustomButton from '../styledComponents/CustomButton';
 
-const ColorButton = withStyles((theme: Theme) => ({
-    root: {
-      color: '#fff',
-      margin: '1rem 0',
-      backgroundColor: green[500],
-      padding: '1rem 5rem',
-      '&:hover': {
-        backgroundColor: green[700],
-      },
-    },
-  }))(Button);
 
 // typing for individual products
 interface productType {
@@ -98,7 +88,7 @@ const FilledCart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFro
                 maxWidth: '800px'
             }}>
         <Paper style={{
-            marginTop: '4rem',
+            marginTop: '1rem',
             textAlign: 'center',
             padding: '1.5rem'
         }}>
@@ -139,10 +129,10 @@ const FilledCart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFro
                 justifyContent: 'flex-end'
                 }}>
             
-                <Link to="/checkout">
-                    <ColorButton variant="contained" color="primary">
+                <Link to="/checkout" style={{textDecoration:'none'}}>
+                    <CustomButton variant="contained">
                         Checkout
-                    </ColorButton>
+                    </CustomButton>
                 </Link>
             </div>
             </div>

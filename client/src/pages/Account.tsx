@@ -1,13 +1,8 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { Typography, CardMedia, CardContent, Button, CardActionArea, Card, Container } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -21,6 +16,7 @@ const useStyles = makeStyles({
 
 const Account = () => {
   const classes = useStyles();
+  const { loginWithRedirect, logout } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
@@ -29,6 +25,8 @@ const Account = () => {
 
   return (
     <>
+    <main style={{marginTop: '56px'}}>
+      <Container maxWidth="xs">
     {isAuthenticated ? (
       <div>
         <Card className={classes.root}>
@@ -49,7 +47,19 @@ const Account = () => {
         </CardActionArea>
         </Card>
       </div>
-    ):<></>}
+    )
+    :<>
+        <Typography variant="h6" style={{paddingTop: '20px'}}>Login to view your account..</Typography>
+        <Link 
+            className="drawer-link" 
+            color="inherit" 
+            to="/login" 
+            onClick={() => loginWithRedirect()}>
+              <Button variant="contained" color="secondary">LOGIN</Button>
+        </Link>
+      </>}
+      </Container>
+    </main>
     </>
   );
 };

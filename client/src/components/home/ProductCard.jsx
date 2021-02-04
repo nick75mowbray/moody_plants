@@ -1,12 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import {Image, Transformation} from 'cloudinary-react';
 import '../styles/style.scss';
+
 
 
 const useStyles = makeStyles({
@@ -23,7 +20,9 @@ const ProductCard = ({name, image, price, size})=>{
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} key={name}>
+    <Card className={classes.root} key={name} style={{
+      maxWidth: '300px'
+  }}>
       <CardActionArea>
         <CardMedia 
           component="div"
@@ -36,7 +35,7 @@ const ProductCard = ({name, image, price, size})=>{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            maxHeight: '500'
+            maxHeight: '400px'
             }}
              >
             <Image cloudName="dw7h2b2j3" 
@@ -53,15 +52,21 @@ const ProductCard = ({name, image, price, size})=>{
         </CardMedia>
         
         <CardContent className="card-content card-text">
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h6">
             {name}
           </Typography>
-          <Typography variant="h6" color="textPrimary" component="h6">
-            {price}
-          </Typography>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
           <Typography variant="body2" color="textSecondary" component="p">
             {`size: ${size.metric.width}cm x ${size.metric.height}cm | ${size.imperial.width}" x ${size.imperial.height}"`}
           </Typography>
+          <Typography variant="h6" color="textSecondary">
+            {price}
+          </Typography>
+          </div>
           
         </CardContent>
       </CardActionArea>

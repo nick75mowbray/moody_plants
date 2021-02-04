@@ -46,14 +46,10 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function Sortby() {
+const Sortby = ({handleChange, sort, setSort})=> {
   const classes = useStyles();
   const theme = useTheme();
-  const [sort, setSort] = React.useState([]);
 
-  const handleChange = (event) => {
-    setSort(event.target.value);
-  };
 
   return (
     <div>
@@ -89,3 +85,5 @@ export default function Sortby() {
     </div>
   );
 }
+
+export default Sortby;

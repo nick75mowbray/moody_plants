@@ -9,11 +9,16 @@ body, html {
 
 a {
     text-decoration: none;
+    color: #2B2B2B;
+    &:hover {
+        color: $gradient-one;
+    }
 }
 // menu nav bar
 .navBar.banner {
     background-color: #fff;
     z-index: 50;
+    justify-content: space-between;
 }
 // hero
 .hero.full-width-image {
@@ -54,9 +59,9 @@ a {
     padding: {
         bottom: 2vh;
     };
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: center;
 }
 
 // product cards 

@@ -48,20 +48,26 @@ const Cart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFromCart}
 
 
     return (
-        <Container>
-            <div >
-                <Typography>Your Cart</Typography>
-                {isEmpty ? 
-                    <EmptyCart/>:
-                    <FilledCart 
-                        cart={cart} 
-                        commerceProducts={commerceProducts} 
-                        products={products}
-                        onUpdateCart={onUpdateCart}
-                        onRemoveFromCart={onRemoveFromCart}
-                        />}
-            </div>
-        </Container>
+        <main style={{marginTop: '64px'}}>
+            <Container>
+                <div >
+                    <Typography 
+                        align="center" 
+                        variant="h5" 
+                        style={{paddingTop: '20px'}}>
+                            Your Cart</Typography>
+                    {isEmpty ? 
+                        <EmptyCart/>:
+                        <FilledCart 
+                            cart={cart} 
+                            commerceProducts={commerceProducts} 
+                            products={products}
+                            onUpdateCart={onUpdateCart}
+                            onRemoveFromCart={onRemoveFromCart}
+                            />}
+                </div>
+            </Container>
+        </main>
     )
 } 
 

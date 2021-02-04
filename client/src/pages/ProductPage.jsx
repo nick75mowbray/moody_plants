@@ -37,31 +37,32 @@ function ProductPage({commerceProducts, onAddToCart}) {
   
   return (
     <>
-    <Link to="/">
-      <KeyboardBackspaceIcon color="textPrimary"/>
-    </Link>
-    {product && product.views}
-    
-    <Box m={1}>
-      <Grid container spacing={1}>
-        <Grid item sm={6}>
-          <ImageCarousel 
-            images={product.images}
-            name={product.name}/>
+    <main style={{marginTop: '64px'}}>
+      <Link to="/" style={{padding: '16px'}}>
+        <KeyboardBackspaceIcon color="textPrimary"/>
+      </Link>
+      
+      <Box m={1}>
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={6}>
+            <ImageCarousel 
+              images={product.images}
+              name={product.name}/>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            {matchingProduct && <Details 
+              name={product.name}
+              description={product.description}
+              price={matchingProduct.price.formatted_with_code}
+              size={product.size}
+              onAddToCart={onAddToCart}
+              productId={matchingProduct.id}
+            />}
+            
+          </Grid>
         </Grid>
-        <Grid item sm={6}>
-          {matchingProduct && <Details 
-            name={product.name}
-            description={product.description}
-            price={matchingProduct.price.formatted_with_code}
-            size={product.size}
-            onAddToCart={onAddToCart}
-            productId={matchingProduct.id}
-          />}
-          
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </main>
     </>
     )
   }

@@ -31,11 +31,6 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
   title: {
     fontSize: 14,
     color: '#2B2B2B'
@@ -70,7 +65,7 @@ const Details = ({ name, price, size, onAddToCart, productId}:detailProps) => {
   const classes = useStyles();
 
   return (
-      <>
+      <div>
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} variant="h3" gutterBottom>
@@ -90,10 +85,11 @@ const Details = ({ name, price, size, onAddToCart, productId}:detailProps) => {
         <Typography className={classes.paragraph} variant="body2" component="p">
         This limited edition fine art print featuring work by Nicholas Mowbray captures the stunning and often unseen details of plants. Using a variety of photography and lighting techniques he captures plants in rich and vibrant colours. This print makes a excellent addition to any home and is printed using top-quality printing techniques.
         </Typography>
-        <Typography className={classes.paragraph} variant="body2" component="p">
+        <br />
+        <Typography className={classes.paragraph} variant="body2" color="textSecondary">
         Printing will take 3-5 days before shipping.
         </Typography>
-        <Typography className={classes.paragraph} variant="body2" component="p">
+        <Typography className={classes.paragraph} variant="body2" color="textSecondary">
         Frame not included.
         </Typography>
         </div>
@@ -102,7 +98,7 @@ const Details = ({ name, price, size, onAddToCart, productId}:detailProps) => {
     <PurchaseButtons
       onAddToCart={onAddToCart}
       productId={productId}/>
-    </>
+    </div>
   );
 }
 

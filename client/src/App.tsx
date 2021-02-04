@@ -50,6 +50,11 @@ const App = ()=> {
 
 const [products, setProducts] = useState<productStateType | undefined>(undefined);
 const [commerceProducts, setCommerceProducts] = useState([]);
+const [sort, setSort] = useState('');
+
+const handleChange = (event:any) => {
+  setSort(event.target.value);
+};
 const [cart, setCart] = useState<cartInterface>({
   id:"",
   created:0,
@@ -165,7 +170,14 @@ function loadProducts() {
       <MenuDrawer totalItems={cart.total_items}/>
       <Switch>
         <Route exact path={["/","/products"]}>
-          <Home commerceProducts={commerceProducts} products={products}/></Route>
+          <Home 
+            commerceProducts={commerceProducts} 
+            products={products}
+            handleChange={handleChange}
+            sort={sort}
+            setSort={setSort}
+            />
+            </Route>
         <Route exact path="/about"></Route>
         <Route exact path="/account">
           <Account/>

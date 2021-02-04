@@ -4,6 +4,7 @@ import Hero from '../components/home/Hero';
 import Sortby from '../components/home/Sortby.jsx';
 import { commerceProductsInterface } from '../utils/commerceProductsInterface';
 import mongoose from 'mongoose';
+import { Container } from '@material-ui/core';
 
 
 // typing for individual products
@@ -31,15 +32,25 @@ interface productType {
 
 type propsType = {
     commerceProducts: commerceProductsInterface[],
-    products: productType[] | undefined
+    products: productType[] | undefined,
+    handleChange: any,
+    sort: string, 
+    setSort: any
 };
 
-const Home = ({commerceProducts, products}: propsType) => {
+const Home = ({commerceProducts, products, handleChange, sort, setSort}: propsType) => {
     return (
         <>
-            <Hero/>
-            <Sortby/>
-            <ImageList commerceProducts={commerceProducts} products={products}/>
+            <main style={{marginTop: '56px'}}>
+                <Hero/>
+                <Container maxWidth="lg">
+                    <Sortby 
+                        handleChange={handleChange}
+                        sort={sort}
+                        setSort={setSort}/>
+                    <ImageList commerceProducts={commerceProducts} products={products}/>
+                </Container>
+            </main>
         </>
     )
 }

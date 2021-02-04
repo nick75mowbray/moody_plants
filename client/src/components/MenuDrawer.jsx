@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) =>
     root: {
       display: 'flex',
       flexGrow: 1,
-      width: '100vw',
+      width: '100%',
+     
       margin: 0
     },
     appBar: {
@@ -176,7 +177,7 @@ export default function PersistentDrawerLeft({totalItems}) {
             src={Logo} 
             className={classes.title}
             alt="LOGO"></img>
-          <div className={classes.search}>
+            {location.pathname == '/' && <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -188,10 +189,17 @@ export default function PersistentDrawerLeft({totalItems}) {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
+          </div>}
+          
           {/* hide cart if on cart page */}
-          {!(location.pathname == '/cart' || location.pathname == '/checkout') &&  <Badge component={Link} to="/cart" badgeContent={totalItems} color="secondary">
-            <ShoppingCartIcon/>
+          {!(location.pathname == '/cart' || location.pathname == '/checkout') &&  
+          <Badge 
+            component={Link} 
+            to="/cart" 
+            badgeContent={totalItems} 
+            color="secondary"
+            className={classes.drawerHeader}>
+            <ShoppingCartIcon color="info"/>
           </Badge>}
          
           

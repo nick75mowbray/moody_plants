@@ -18,6 +18,9 @@ const myTheme = createMuiTheme({
             dark: '#ba000d',
             contrastText: '#fff'
         },
+        info: {
+            main: '#2B2B2B'
+        }
     }, 
     shape: {
         borderRadius: 0

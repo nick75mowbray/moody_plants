@@ -111,7 +111,7 @@ const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
 
     return (
         <div>
-            <main>
+            <main style={{marginTop: '56px'}}>
                 <Paper>
                     <Typography variant="h4" align="center">Checkout</Typography>
                     <Stepper activeStep={activeStep} alternativeLabel color="success">

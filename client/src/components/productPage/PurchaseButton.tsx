@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import CustomButton from '../styledComponents/CustomButton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     button: {
-      background: 'linear-gradient(to bottom, #11998e, #38ef7d)'
+      marginRight: theme.spacing(1),
   }
   }),
 );
@@ -27,16 +28,15 @@ const PurchaseButtons = ({onAddToCart, productId}:buttonProps) => {
   return (
     <div className={classes.root}>
         <br></br>
-        <Button 
-          variant="contained" 
+        <CustomButton variant="contained" 
           className={classes.button}
           onClick={() => onAddToCart(productId, 1)}>
             Add to cart
-        </Button>
-        <Link to="/cart">
-        <Button variant="contained" className={classes.button}>
+        </CustomButton>
+        <Link to="/cart" style={{textDecoration:'none'}}>
+        <CustomButton variant="contained">
             Checkout
-        </Button>
+        </CustomButton>
         </Link>
     </div>
   );
