@@ -1,11 +1,8 @@
 import React from 'react';
-import { Typography, Grid, Paper, Container, Divider, Button } from '@material-ui/core';
+import { Typography, Grid, Paper, Container, Divider } from '@material-ui/core';
 import Item from './Item';
-import { Theme, withStyles } from '@material-ui/core/styles';
 import { cartInterface } from '../../utils/cartInterface';
 import mongoose from 'mongoose';
-import { commerceProductsInterface } from '../../utils/commerceProductsInterface';
-import { green } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom';
 import CustomButton from '../styledComponents/CustomButton';
 
@@ -51,14 +48,15 @@ interface removeFromCart {
 }
 
 type propsType = {
-    commerceProducts: commerceProductsInterface[],
     products: productType[] | undefined,
     cart: cartInterface,
     onUpdateCart: updateCart,
     onRemoveFromCart: removeFromCart
 };
 
-const FilledCart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFromCart}: propsType) => {
+
+
+const FilledCart = ({ products, cart, onUpdateCart, onRemoveFromCart}: propsType) => {
 
     let productImages:string[] = [];
     let productSizes: productSizes[] = [];
@@ -69,7 +67,7 @@ const FilledCart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFro
             const matchingCommerceProductArray = products.filter( product => product.commercePermalink === cartItem.permalink);
             const [matchingProduct] = matchingCommerceProductArray;
             if (matchingProduct){
-              productImages.push(matchingProduct.images[2]);  
+              productImages.push(matchingProduct.images[0]);  
               productSizes.push(matchingProduct.size);
             }
             
@@ -116,8 +114,9 @@ const FilledCart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFro
                             display: 'flex',
                             justifyContent: 'flex-end'
                         }}>
-                            <Typography variant="h5">
+                            <Typography variant="subtitle1">
                                 Subtotal: {cart.subtotal.formatted_with_code}
+                                
                             </Typography>
                         </div>
                             </Container>

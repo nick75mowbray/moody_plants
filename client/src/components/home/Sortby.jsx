@@ -37,16 +37,16 @@ const names = [
   'Size',
 ];
 
-function getStyles(name, personName, theme) {
+function getStyles(name, sort, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      sort.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
 }
 
-const Sortby = ({handleChange, sort, setSort})=> {
+const Sortby = ({ handleChange, sort })=> {
   const classes = useStyles();
   const theme = useTheme();
 

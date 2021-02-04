@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, Divider } from '@material-ui/core';
 import { Image, Transformation } from 'cloudinary-react';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -20,16 +20,17 @@ const Item = ({image, price, name, quantity, size, onUpdateCart, onRemoveFromCar
                 <Transformation width="auto" dpr="auto" height="100" crop="scale" />
             </Image>
             </div>
-            <div>
+            <div style={{textAlign: 'start'}}>
                 <Typography>{name}</Typography>
-            </div>
-            {size ? 
+                {size ? <div>
             <Typography variant="subtitle2" color="textSecondary">
                 {`size: ${size.metric.width}cm x ${size.metric.height}cm | ${size.imperial.width}" x ${size.imperial.height}"`}
-            </Typography>
-            :<></>}
+            </Typography></div>
+            :<div></div>}
+            </div>
             
-            <div>
+            
+            <div style={{textAlign: 'end'}}>
                 <Typography>{price}</Typography>
             </div>
             <div style={{
@@ -39,15 +40,19 @@ const Item = ({image, price, name, quantity, size, onUpdateCart, onRemoveFromCar
             }}>
                 <Button onClick={()=>{
                     onUpdateCart(productId, quantity-1);
-                }}>-</Button>
+                }}
+                style={{padding: '0'}}>-</Button>
                     <Typography>{quantity}</Typography>
-                <Button onClick={()=>{
-                    onUpdateCart(productId, quantity+1);
-                }}>+</Button>
+                <Button 
+                    onClick={()=>{
+                    onUpdateCart(productId, quantity+1)}}
+                    style={{padding: '0'}}
+                >+</Button>
                 <Button>
                     <DeleteIcon onClick={()=>{
                         onRemoveFromCart(productId);
-                    }}></DeleteIcon>
+                    }}
+                    style={{padding: '0'}}></DeleteIcon>
                 </Button>
             </div>
         </div>

@@ -50,10 +50,10 @@ const useStyles = makeStyles((theme) =>
     },
     title: {
       flexGrow: 1,
-      display: 'none',
-      [theme.breakpoints.up('sm')]: {
-        display: 'block',
-      },
+      // display: 'none',
+      // [theme.breakpoints.up('sm')]: {
+      //   display: 'block',
+      // },
       // add styling to center icon
       textAlign: 'center',
       height: 30
@@ -198,7 +198,7 @@ export default function PersistentDrawerLeft({totalItems}) {
             to="/cart" 
             badgeContent={totalItems} 
             color="secondary"
-            className={classes.drawerHeader}>
+          >
             <ShoppingCartIcon color="info"/>
           </Badge>}
          

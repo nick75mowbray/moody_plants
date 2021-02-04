@@ -60,7 +60,6 @@ const Cart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFromCart}
                         <EmptyCart/>:
                         <FilledCart 
                             cart={cart} 
-                            commerceProducts={commerceProducts} 
                             products={products}
                             onUpdateCart={onUpdateCart}
                             onRemoveFromCart={onRemoveFromCart}

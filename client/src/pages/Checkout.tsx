@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 import { Link, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
-import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core';
+import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Container, Divider, Button } from '@material-ui/core';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Shipping from '../components/checkout/Shipping';
 import Payment from '../components/checkout/Payment';
@@ -111,10 +111,15 @@ const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
 
     return (
         <div>
-            <main style={{marginTop: '56px'}}>
+            <main style={{marginTop: '64px'}}>
+                <Container maxWidth="sm">
                 <Paper>
-                    <Typography variant="h4" align="center">Checkout</Typography>
-                    <Stepper activeStep={activeStep} alternativeLabel color="success">
+                    <Typography 
+                        variant="h6" 
+                        align="center"
+                        style={{paddingTop: '16px'}}
+                        >Checkout</Typography>
+                    <Stepper activeStep={activeStep} alternativeLabel>
                         {steps.map((step)=>(
                            <Step key={step}>
                             <StepLabel>{step}</StepLabel>
@@ -126,6 +131,7 @@ const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
                         : checkoutToken && <Form/>
                     }
                 </Paper>
+                </Container>
             </main>
         </div>
     )
