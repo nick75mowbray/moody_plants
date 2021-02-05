@@ -180,13 +180,10 @@ const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
                     //     <Typography>Thankyou for your purchase</Typography>
                     //     <Button component={Link} to="/" type="button">Back to site</Button>
                     // </div>
-                     : (
-                        <div>
+                     : (<div>
                             <CircularProgress/>
-                        </div>
-                        ) 
+                        </div>) 
                     )
-                        
                         : checkoutToken && <Form/>
                           
                     }
