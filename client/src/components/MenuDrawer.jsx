@@ -207,7 +207,7 @@ export default function PersistentDrawerLeft({totalItems}) {
       </AppBar>
       <Drawer
         className={classes.drawer}
-        variant="persistent"
+        // variant="persistent"
         anchor="left"
         open={open}
         onClose={handleDrawerClose}

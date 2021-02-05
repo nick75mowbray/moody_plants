@@ -2,13 +2,79 @@ import { readFileSync } from "fs";
 import { Link, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Container, Divider, Button } from '@material-ui/core';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme, createStyles, withStyles } from '@material-ui/core/styles'
 import Shipping from '../components/checkout/Shipping';
 import Payment from '../components/checkout/Payment';
 import Confirmation from '../components/checkout/Confirmation';
 import { commerce } from '../lib/commerce';
 import { cartInterface } from '../utils/cartInterface';
 import { AnyARecord } from "dns";
+import CustomButton from '../components/styledComponents/CustomButton';
+import { StepIconProps } from '@material-ui/core/StepIcon';
+import StepConnector from '@material-ui/core/StepConnector';
+import Check from '@material-ui/icons/Check';
+import clsx from 'clsx';
+
+const QontoConnector = withStyles({
+  alternativeLabel: {
+    top: 10,
+    left: 'calc(-50% + 16px)',
+    right: 'calc(50% + 16px)',
+  },
+  active: {
+    '& $line': {
+      borderColor: '#784af4',
+    },
+  },
+  completed: {
+    '& $line': {
+      borderColor: '#784af4',
+    },
+  },
+  line: {
+    borderColor: '#eaeaf0',
+    borderTopWidth: 3,
+    borderRadius: 1,
+  },
+})(StepConnector);
+
+const useQontoStepIconStyles = makeStyles({
+  root: {
+    color: '#eaeaf0',
+    display: 'flex',
+    height: 22,
+    alignItems: 'center',
+  },
+  active: {
+    color: '#784af4',
+  },
+  circle: {
+    width: 8,
+    height: 8,
+    borderRadius: '50%',
+    backgroundColor: 'currentColor',
+  },
+  completed: {
+    color: '#784af4',
+    zIndex: 1,
+    fontSize: 18,
+  },
+});
+
+function QontoStepIcon(props: StepIconProps) {
+  const classes = useQontoStepIconStyles();
+  const { active, completed } = props;
+
+  return (
+    <div
+      className={clsx(classes.root, {
+        [classes.active]: active,
+      })}
+    >
+      {completed ? <Check className={classes.completed} /> : <div className={classes.circle} />}
+    </div>
+  );
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -113,16 +179,16 @@ const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
         <div>
             <main style={{marginTop: '64px'}}>
                 <Container maxWidth="sm">
-                <Paper>
+                <Paper style={{padding: '32px'}}>
                     <Typography 
                         variant="h6" 
                         align="center"
                         style={{paddingTop: '16px'}}
                         >Checkout</Typography>
-                    <Stepper activeStep={activeStep} alternativeLabel>
+                    <Stepper activeStep={activeStep} alternativeLabel connector={<QontoConnector/>}>
                         {steps.map((step)=>(
                            <Step key={step}>
-                            <StepLabel>{step}</StepLabel>
+                            <StepLabel StepIconComponent={QontoStepIcon}>{step}</StepLabel>
                         </Step> 
                         ))} 
                     </Stepper>

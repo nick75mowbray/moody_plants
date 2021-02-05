@@ -3,7 +3,8 @@ import { Typography, Button, Divider, List, ListItem, ListItemText } from '@mate
 import Review from './Review';
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-
+import CustomButton from '../styledComponents/CustomButton';
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
@@ -61,7 +62,10 @@ const Payment = ({ shippingData, checkoutToken, onbackStep, onCaptureCheckout, n
             <Typography variant="h6" gutterBottom style={{margin: '20px 0'}}>
                 Payment Method
             </Typography>
-            <Elements stripe={stripePromise}>
+            <div style={{
+                minHeight: '30px',
+                fontSize: '0.8rem'}}>
+            <Elements stripe={stripePromise} style={{}}>
                 <ElementsConsumer>
                     {({ elements, stripe })=>(
                         <form onSubmit={(event)=> {
@@ -71,19 +75,23 @@ const Payment = ({ shippingData, checkoutToken, onbackStep, onCaptureCheckout, n
                             <br /><br/>
                             <div style={{display:'flex',
                             justifyContent: 'space-between'}}>
-                                <Button variant="outlined"
-                                    onClick={onbackStep}>Back</Button>
-                                <Button variant="contained" 
+                                <Button 
+                                    variant="outlined" 
+                                    style={{paddingLeft: '8px'}}
+                                    onClick={onbackStep}>
+                                    <ArrowLeftIcon/>Back</Button>
+                                <CustomButton variant="contained" 
                                     type="submit"
                                     disabled={!stripe}
-                                    color="primary">
+                                    >
                                         Pay { checkoutToken.live.subtotal.formatted_with_code }
-                                    </Button>
+                                    </CustomButton>
                             </div>
                         </form>
                     )}
                 </ElementsConsumer>
             </Elements>
+            </div>
         </div>
     )
 }

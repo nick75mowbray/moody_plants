@@ -63,7 +63,7 @@ const ProductCard = ({name, image, price, size})=>{
           <Typography variant="body2" color="textSecondary" component="p">
             {`size: ${size.metric.width}cm x ${size.metric.height}cm | ${size.imperial.width}" x ${size.imperial.height}"`}
           </Typography>
-          <Typography variant="h6" color="textSecondary">
+          <Typography variant="subtitle1">
             {price}
           </Typography>
           </div>

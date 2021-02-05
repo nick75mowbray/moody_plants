@@ -3,8 +3,10 @@ import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@materia
 import { useForm, FormProvider } from 'react-hook-form';
 import FormInput from './CustomTextField';
 import { Link } from 'react-router-dom';
-
+import CustomButton from '../styledComponents/CustomButton';
 import { commerce } from '../../lib/commerce';
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 
 const Shipping = ({checkoutToken, next}) => {
@@ -97,6 +99,11 @@ const Shipping = ({checkoutToken, next}) => {
                             name='city/ suburb'
                             label='city/ suburb'
                         />
+                        <FormInput
+                            required 
+                            name='zip'
+                            label='zip/ postcode'
+                        />
 
 
                         <Grid item xs={12} sm={6}>
@@ -139,16 +146,23 @@ const Shipping = ({checkoutToken, next}) => {
                                     ))}
                                 </Select>
                         </Grid>
-                        <br />
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between'
-                        }}>
-                            <Button component={Link} to="/cart" variant="outlined">Back to cart</Button>
-                            <Button type="submit" variant="contained">Next</Button>
-                        </div>
+                        
 
                     </Grid>
+                    <br />
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                        }}>
+                            <Link to="/cart" style={{textDecoration: 'none'}}>
+                                <Button variant="outlined" style={{paddingLeft: '8px'}}>
+                                    <ArrowLeftIcon/>Back</Button>
+                            </Link>
+                            {/* <Button type="submit" variant="contained">Next</Button> */}
+                            <CustomButton type="submit">Next
+                            <ArrowRightIcon/></CustomButton>
+                        </div>
                 </form>
             </FormProvider>
         </div>
