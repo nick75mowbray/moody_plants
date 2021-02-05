@@ -7,20 +7,36 @@ const Review = ({ checkoutToken }:any) => {
             <Typography variant="h6" gutterBottom>Order Summary</Typography>
             <List disablePadding>
                 {checkoutToken.live.line_items.map((product:any)=>(
-                    <div>
+                    <div key={product.id}>
                         <ListItem style={{
                             
-                        }} key={product.id}>
+                        }}>
                             <ListItemText primary={product.name} secondary={`Quantity: ${product.quantity}`}/>
-                            <Typography variant="body2">{product.line_total.formatted_with_code}</Typography>
+                            <Typography variant="body2">{product.line_total.formatted}</Typography>
                         </ListItem>
                         
                     </div>
                 ))}
-                <ListItem style={{ padding: '10px 0'}}>
+                {/* subtotal */}
+                <ListItem>
+                            <ListItemText primary="Subtotal"/>
+                            <Typography variant="subtitle2" style={{ fontWeight: 400}}>
+                                {checkoutToken.live.subtotal.formatted}
+                            </Typography>
+                        </ListItem>
+                {/* shipping */}
+                <ListItem >
+                            <ListItemText primary="Shipping"/>
+                            <Typography variant="subtitle2" style={{ fontWeight: 400}}>
+                                {checkoutToken.live.shipping.available_options[0].price.formatted}
+                            </Typography>
+                        </ListItem>
+                {/* total price */}
+                <ListItem >
                             <ListItemText primary="Total"/>
                             <Typography variant="subtitle1" style={{ fontWeight: 700}}>
-                                {checkoutToken.live.subtotal.formatted_with_code}
+                                {checkoutToken.live.total.raw
+                                +checkoutToken.live.shipping.available_options[0].price.raw}.00 AUD
                             </Typography>
                         </ListItem>
             </List>

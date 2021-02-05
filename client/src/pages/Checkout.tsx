@@ -115,7 +115,7 @@ const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
                 const token = await commerce.checkout.generateToken(cart.id, { type: 'cart'});
                 setCheckoutToken(token);
             } catch (error){
-                history.pushState('/');
+                // history.pushState('/');
             }
         }
         generateToken();

@@ -9,6 +9,7 @@ import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const Payment = ({ shippingData, checkoutToken, onbackStep, onCaptureCheckout, nextStep, timeout }) => {
+
     const handleSubmit = async (event, elements, stripe) => {
         event.preventDefault();
 
@@ -31,7 +32,7 @@ const Payment = ({ shippingData, checkoutToken, onbackStep, onCaptureCheckout, n
                     email: shippingData.email
                 },
                 shipping: {
-                    name: 'Primary',
+                    name: 'Domestic',
                     street: shippingData.address1,
                     town_city: shippingData.city,
                     county_state: shippingData.shippingSubdivision,
@@ -39,15 +40,16 @@ const Payment = ({ shippingData, checkoutToken, onbackStep, onCaptureCheckout, n
                     country: shippingData.shippingCountry
                 },
                 fulfillment: {
-                    shipping_method: shippingData.shippingOption,
-                    payment: {
+                    shipping_method: shippingData.shippingOption
+                },
+                payment: {
                         gateway: 'stripe',
                         stripe: {
                             payment_method_id: paymentMethod.id
                         }
                     }
                 }
-            }
+            
             onCaptureCheckout(checkoutToken.id, orderData);
             timeout();
             nextStep();

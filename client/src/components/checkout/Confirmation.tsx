@@ -1,4 +1,4 @@
-import { Typography, Button, CircularProgress } from '@material-ui/core';
+import { Typography, Container } from '@material-ui/core';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
@@ -6,20 +6,26 @@ import CustomButton from '../styledComponents/CustomButton';
 
 const Confirmation = (order:any) => {
     return (
+        <Container maxWidth="sm">
         <div style={{
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems:'center',
+            textAlign:'center'
         }}>
             <img src={logo}
             alt="logo"
-            height='140px'/>
-            <Typography variant="h4"> ORDER PLACED: {order.customer.reference}</Typography>
-            <Typography variant="body1">Thankyou for your purchase, {order.customer.firstname} {order.customer.lastname}
-            An email will be sent to {order.customer.email} with your order details</Typography>
+            height='80px'
+            style={{marginBottom: '1rem'}}/>
+            <Typography variant="h5" gutterBottom> ORDER PLACED: {order.order.customer_reference}</Typography>
+            <Typography variant="body2">Thankyou for your purchase, {order.order.customer.firstname} {order.order.customer.lastname}
+            An email will be sent to {order.order.customer.email} with your order details</Typography>
             <Link to="/" style={{textDecoration: 'none'}}>
                 <CustomButton>Back to site</CustomButton>
             </Link>
         </div>
+        </Container>
     )
 }
 

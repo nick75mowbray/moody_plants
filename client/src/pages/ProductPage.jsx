@@ -18,16 +18,14 @@ function ProductPage({commerceProducts, onAddToCart}) {
     // load product data
     API.getProduct(id)
       .then(result => {
-        console.log(product);
         setProduct(result.data);  
         // update product page views
         API.updateViews(id, {views: result.data.views+1})
             .then(res => {
-              console.log(`update views running id:${id}, views:${result.data.views}`);
               setProduct(res.data);
-            console.log(res.data);})
+            })
             .catch(err => console.log(err));
-      console.log(result.data);})
+      })
       .catch(err => console.log(err));
     
   }, [])
