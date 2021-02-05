@@ -14,6 +14,7 @@ import { StepIconProps } from '@material-ui/core/StepIcon';
 import StepConnector from '@material-ui/core/StepConnector';
 import Check from '@material-ui/icons/Check';
 import clsx from 'clsx';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const QontoConnector = withStyles({
   alternativeLabel: {
@@ -187,6 +188,7 @@ const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
                     )
                         
                         : checkoutToken && <Form/>
+                          
                     }
                 </Paper>
                 </Container>

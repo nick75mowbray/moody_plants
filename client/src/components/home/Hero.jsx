@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import '../styles/style.scss';
 import {Image, Transformation} from 'cloudinary-react';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 function Hero() {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(()=>{
+    setLoading(true);
+  },[])
   return (
     <>
       <CssBaseline />
@@ -17,7 +23,11 @@ function Hero() {
               width: '100vw',
               justifyContent: 'center'  
               }}>
-            <Image cloudName="dw7h2b2j3" 
+{!loading ? (
+  <Skeleton width='100%' variant="rect">
+    <div style={{height: '100%', width: '100%'}}/>
+  </Skeleton>
+):<Image cloudName="dw7h2b2j3" 
               publicId="plants/hero2_bbtuo0.jpg" 
               responsive= {true}
               width="auto"
@@ -25,7 +35,8 @@ function Hero() {
               crop="scale"
               clienthints="true">
               <Transformation quality="auto" fetchFormat="auto" />
-              </Image>
+              </Image>}
+            
             </div>
       </Container>
       </>
