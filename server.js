@@ -16,7 +16,7 @@ var options = {
     authorization: 'Bearer API2_ACCESS_TOKEN',
     'cache-control': 'no-cache'
   },
-  data: {initiate_login_uri: 'https://www.moodyplants.com/login/'}
+  data: {initiate_login_uri: 'https://www.moodyplants.com/login'}
 };
 
 axios.request(options).then(function (response) {
