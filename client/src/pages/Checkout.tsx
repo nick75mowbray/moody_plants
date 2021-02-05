@@ -112,7 +112,6 @@ const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
         const generateToken = async () => {
             try {
                 const token = await commerce.checkout.generateToken(cart.id, { type: 'cart'});
-                console.log(`token is ${JSON.stringify(token)}`);
                 setCheckoutToken(token);
             } catch (error){
                 history.pushState('/');
@@ -137,27 +136,7 @@ const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
             setIsFinished(true);
         }, 3000)
     }
-
-    let Confirmation = () => order.customer ? (
-        (
-            <div>
-                Confirmation
-                <Typography>Thankyou for your purchase, {order.customer.firstname} {order.customer.lastname}</Typography>
-                <Typography> order ref: {order.customer.reference}</Typography>
-                <Button component={Link} to="/" type="button">Back to site</Button>
-            </div>
-        )
-    )  : isFinished ? (
-        <div>
-        Confirmation
-        <Typography>Thankyou for your purchase</Typography>
-        <Button component={Link} to="/" type="button">Back to site</Button>
-    </div>
-    ) : (
-        <div>
-            <CircularProgress/>
-        </div>
-    );   
+  
     
     if(error) {
         <>
@@ -193,7 +172,20 @@ const Checkout = ({cart, order, onCaptureCheckout, error}: checkoutProps) => {
                         ))} 
                     </Stepper>
                     { activeStep === steps.length ? 
-                        <Confirmation/> 
+                    (order.customer ? <Confirmation order={order}/> 
+                    // : isFinished ? (
+                    //     <div>
+                    //     Confirmation
+                    //     <Typography>Thankyou for your purchase</Typography>
+                    //     <Button component={Link} to="/" type="button">Back to site</Button>
+                    // </div>
+                     : (
+                        <div>
+                            <CircularProgress/>
+                        </div>
+                        ) 
+                    )
+                        
                         : checkoutToken && <Form/>
                     }
                 </Paper>

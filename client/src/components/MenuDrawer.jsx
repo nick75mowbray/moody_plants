@@ -199,7 +199,7 @@ export default function PersistentDrawerLeft({totalItems}) {
             badgeContent={totalItems} 
             color="secondary"
           >
-            <ShoppingCartIcon color="info"/>
+            <ShoppingCartIcon />
           </Badge>}
          
           

@@ -10,7 +10,7 @@ const Review = ({ checkoutToken }:any) => {
                     <div>
                         <ListItem style={{
                             
-                        }} key={product.name}>
+                        }} key={product.id}>
                             <ListItemText primary={product.name} secondary={`Quantity: ${product.quantity}`}/>
                             <Typography variant="body2">{product.line_total.formatted_with_code}</Typography>
                         </ListItem>

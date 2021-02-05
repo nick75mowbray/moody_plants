@@ -89,6 +89,7 @@ const Shipping = ({checkoutToken, next}) => {
                             name='lastname'
                             label='lastname'
                         />
+                        <FormInput required name="email" label="Email" />
                         <FormInput
                             required 
                             name='street address'
