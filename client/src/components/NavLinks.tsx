@@ -35,9 +35,9 @@ function NavLinks(){
                             <Link className="drawer-link" color="inherit" to="/">SHOP</Link>
                         </div>
                        
-                        <div className="border-gradient">
+                        {/* <div className="border-gradient">
                             <Link className="drawer-link" color="inherit" to="/about">ABOUT</Link>
-                        </div> 
+                        </div>  */}
                        
                         <div className="border-gradient">
                             <Link className="drawer-link" color="inherit" to="/account">ACCOUNT</Link>

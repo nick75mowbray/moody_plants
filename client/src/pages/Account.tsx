@@ -25,7 +25,7 @@ const Account = () => {
 
   return (
     <>
-    <main style={{marginTop: '56px'}}>
+    <main style={{marginTop: '100px'}}>
       <Container maxWidth="xs">
     {isAuthenticated ? (
       <div>

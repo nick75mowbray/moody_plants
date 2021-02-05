@@ -179,7 +179,7 @@ function loadProducts() {
             // sort={sort}
             />
             </Route>
-        <Route exact path="/about"></Route>
+        {/* <Route exact path="/about"></Route> */}
         <Route exact path="/account">
           <Account/>
         </Route>
