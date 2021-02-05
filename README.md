@@ -1,10 +1,13 @@
 # Project 3 MERN e-commerce site
  
 [link to deployed site](https://moodyplants.com/)
-
+![screenshot](/screenshots/main.png)
 ## Description
 This is an e-commerce MERN application for selling some of my fine art photography prints. It uses predominatly React and material-ui in Typescript for the front end, and Node.js and mongoose/mongodb atlas for the backend.
-![demo](/screenshots/demo.gif)   
+
+[demo-part1](/https://youtu.be/_ncm5kktgQM)
+[demo-part2](/https://youtu.be/XsBJtyVZzlk)
+
 
 
 ## Table of Contents
@@ -15,17 +18,23 @@ This is an e-commerce MERN application for selling some of my fine art photograp
 ## Installation
 ```
 npm install
+npm install client
 
 ```
 
 run locally in the command line:
 ``` 
-npm start
+npm run dev
 ```
 ## Features 
-Employee data is stored in state and passed down into child elements.   
-Allows for filtering and sorting of all columns using material-ui.   
-All employee fields and values are searchable using the search input and updated after each key stroke.  
+The frontend uses TypeScript where possible.    
+Uses cloudinary to serve optimised and responsive images to cut down on load times.    
+Custom Material-UI theme, for a unique yet consistant look.  
+Option to login and view an account page using Auth0.    
+Can add items to cart and checkout using commerce.js and stripe (card details).    
+The email entered at checkout will receive a confirmation email upon successful checkout.
+    
+
 
 ## Questions
 [github](https://github.com/nick75mowbray)
