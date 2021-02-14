@@ -33,11 +33,12 @@ interface productType {
 type propsType = {
     commerceProducts: commerceProductsInterface[],
     products: productType[] | undefined,
+    searchTerm: string,
     // handleChange: any,
     // sort: any, 
 };
 
-const Home = ({ commerceProducts, products }: propsType) => {
+const Home = ({ commerceProducts, products, searchTerm }: propsType) => {
     return (
         <>
             <main style={{marginTop: '56px'}}>
@@ -47,7 +48,10 @@ const Home = ({ commerceProducts, products }: propsType) => {
                         handleChange={handleChange}
                         sort={sort}
                     /> */}
-                    <ImageList commerceProducts={commerceProducts} products={products}/>
+                    <ImageList 
+                        commerceProducts={commerceProducts} 
+                        products={products}
+                        searchTerm={searchTerm}/>
                 </Container>
             </main>
         </>

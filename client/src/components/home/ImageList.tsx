@@ -33,17 +33,24 @@ type productStateType = productType[];
 
 type propsType = {
     commerceProducts: commerceProductsInterface[],
-    products: productStateType | undefined
+    products: productStateType | undefined,
+    searchTerm: string,
 };
 
-const ImageList = ({commerceProducts, products}: propsType) => {
+const ImageList = ({commerceProducts, products, searchTerm}: propsType) => {
 
 
     return (
         <Container>
         <div className="image-grid product-list">
             <Grid container justify="center">
-                {products ? products.map((product, index)=>{
+                {products ? products.filter((data)=>{
+                if(searchTerm == "")
+                    return data
+                else if(data.name.toLowerCase().includes(searchTerm.toLowerCase()) || data.description.toLowerCase().includes(searchTerm.toLowerCase())){
+                    return data
+                }
+                }).map((product, index)=>{
                     const matchingCommerceProductArray = commerceProducts.filter( item => item.permalink === product.commercePermalink);
                     const [matchingProduct] = matchingCommerceProductArray;
                     return (

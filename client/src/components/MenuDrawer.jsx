@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-export default function PersistentDrawerLeft({totalItems}) {
+export default function MenuDrawer({ totalItems, handleSearchChange }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -183,6 +183,7 @@ export default function PersistentDrawerLeft({totalItems}) {
             </div>
             <InputBase
               placeholder="Search…"
+              onChange={handleSearchChange}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

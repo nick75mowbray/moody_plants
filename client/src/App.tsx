@@ -51,12 +51,21 @@ const App = ()=> {
 
 const [products, setProducts] = useState<productStateType | undefined>(undefined);
 const [commerceProducts, setCommerceProducts] = useState([]);
+
+// search
+const [searchTerm, setSearchTerm] = useState("");
+
+const handleSearchChange = (event:any) => {
+  setSearchTerm(event.target.value);
+};
+
 // const [sort, setSort] = useState<any>([]);
 
 // const handleChange = (event:any) => {
 //   setSort(event.target.value);
 // };
 
+// cart state
 const [cart, setCart] = useState<cartInterface>({
   id:"",
   created:0,
@@ -111,11 +120,8 @@ useEffect(()=>{
 function loadProducts() {
     API.getProducts()
     .then(res => {
-        setProducts(res.data);
-        }
-        )
-        
-        .catch(err=>console.error(err));
+        setProducts(res.data);})
+    .catch(err=>console.error(err));
 }
 
 
@@ -169,12 +175,15 @@ function loadProducts() {
   return (
     <MyCustomTheme>
     <Router>
-      <MenuDrawer totalItems={cart.total_items}/>
+      <MenuDrawer 
+        totalItems={cart.total_items}
+        handleSearchChange={handleSearchChange}/>
       <Switch>
         <Route exact path={["/","/products"]}>
           <Home 
             commerceProducts={commerceProducts} 
             products={products}
+            searchTerm={searchTerm}
             // handleChange={handleChange}
             // sort={sort}
             />
