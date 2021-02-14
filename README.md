@@ -3,7 +3,7 @@
 [link to deployed site](https://moodyplants.com/)
 ![screenshot](/screenshots/main.png)
 ## Description
-This is an e-commerce MERN application for selling some of my fine art photography prints. It uses predominatly React and material-ui in Typescript for the front end, and Node.js and mongoose/mongodb atlas for the backend.
+This is an e-commerce MERN application for selling some of my fine art photography prints. It uses predominantly  React and material-ui in Typescript for the front end, and Node.js and mongoose/mongodb atlas for the backend.
 
 [demo-part1](/https://youtu.be/_ncm5kktgQM)
 [demo-part2](/https://youtu.be/XsBJtyVZzlk)
