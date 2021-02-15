@@ -34,8 +34,6 @@ type propsType = {
     commerceProducts: commerceProductsInterface[],
     products: productType[] | undefined,
     searchTerm: string,
-    // handleChange: any,
-    // sort: any, 
 };
 
 const Home = ({ commerceProducts, products, searchTerm }: propsType) => {
@@ -44,10 +42,6 @@ const Home = ({ commerceProducts, products, searchTerm }: propsType) => {
             <main style={{marginTop: '56px'}}>
                 <Hero/>
                 <Container maxWidth="lg">
-                    {/* <Sortby 
-                        handleChange={handleChange}
-                        sort={sort}
-                    /> */}
                     <ImageList 
                         commerceProducts={commerceProducts} 
                         products={products}

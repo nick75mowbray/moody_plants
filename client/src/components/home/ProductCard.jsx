@@ -51,6 +51,7 @@ const ProductCard = ({name, image, price, size})=>{
                  </Skeleton>
                ): <Image cloudName="dw7h2b2j3" 
               publicId={image} 
+              alt={name}
               responsive= {true}
               width="auto"
               dpr="auto" 

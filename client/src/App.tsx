@@ -18,6 +18,7 @@ import API from './utils/API';
 import mongoose from 'mongoose';
 import { commerceProductsInterface } from './utils/commerceProductsInterface';
 import { AnyCnameRecord } from 'dns';
+import { type } from 'os';
 
 // typing for individual products
 interface productType {
@@ -59,11 +60,6 @@ const handleSearchChange = (event:any) => {
   setSearchTerm(event.target.value);
 };
 
-// const [sort, setSort] = useState<any>([]);
-
-// const handleChange = (event:any) => {
-//   setSort(event.target.value);
-// };
 
 // cart state
 const [cart, setCart] = useState<cartInterface>({
@@ -184,8 +180,6 @@ function loadProducts() {
             commerceProducts={commerceProducts} 
             products={products}
             searchTerm={searchTerm}
-            // handleChange={handleChange}
-            // sort={sort}
             />
             </Route>
         {/* <Route exact path="/about"></Route> */}

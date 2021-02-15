@@ -22,9 +22,7 @@ const myTheme = createMuiTheme({
     shape: {
         borderRadius: 0
     },
-    typography: {
-        htmlFontSize: 16
-    }
+    
 });
 
 type Props = {

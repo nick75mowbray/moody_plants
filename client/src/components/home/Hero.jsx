@@ -30,6 +30,7 @@ function Hero() {
 ):<Image cloudName="dw7h2b2j3" 
               publicId="plants/hero2_bbtuo0.jpg" 
               responsive= {true}
+              alt="hero image"
               width="auto"
               dpr="auto" 
               crop="scale"
