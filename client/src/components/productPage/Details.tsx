@@ -59,16 +59,12 @@ type detailProps = {
     }, 
   price: number,
   onAddToCart: any,
-  productId: string
+  productId: string,
+  loading: boolean,
 }
 
-const Details = ({ name, price, size, onAddToCart, productId}:detailProps) => {
+const Details = ({ name, price, size, onAddToCart, productId, loading}:detailProps) => {
   const classes = useStyles();
-  const [loading, setLoading] = useState(false);
-
-    useEffect(()=>{
-      setLoading(true);
-    },[])
 
   return (
       <div>

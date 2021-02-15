@@ -33,9 +33,10 @@ type propsType = {
     commerceProducts: commerceProductsInterface[],
     products: productType[] | undefined,
     searchTerm: string,
+    loading: boolean,
 };
 
-const Home = ({ commerceProducts, products, searchTerm }: propsType) => {
+const Home = ({ commerceProducts, products, searchTerm, loading }: propsType) => {
     return (
         <>
             <main style={{marginTop: '56px'}}>
@@ -44,7 +45,8 @@ const Home = ({ commerceProducts, products, searchTerm }: propsType) => {
                     <ImageList 
                         commerceProducts={commerceProducts} 
                         products={products}
-                        searchTerm={searchTerm}/>
+                        searchTerm={searchTerm}
+                        loading={loading}/>
                 </Container>
             </main>
         </>

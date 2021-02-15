@@ -3,12 +3,8 @@ import {Image, Transformation} from 'cloudinary-react';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 
-const CarouselItem = ({image})=>{
-  const [loading, setLoading] = useState(false);
-
-  useEffect(()=>{
-    setLoading(true);
-  },[])
+const CarouselItem = ({image, loading})=>{
+  
 
     return (
             

@@ -10,6 +10,7 @@ import Details from '../components/productPage/Details';
 
 function ProductPage({commerceProducts, onAddToCart}) {
   const [product, setProduct] = useState({})
+  const [loading, setLoading] = useState(false);
 
   // When this component mounts, grab the product with the _id of props.match.params.id
   // e.g. localhost:3000/products/599dcb67f0f16317844583fc
@@ -23,6 +24,7 @@ function ProductPage({commerceProducts, onAddToCart}) {
         API.updateViews(id, {views: result.data.views+1})
             .then(res => {
               setProduct(res.data);
+              setLoading(true);
             })
             .catch(err => console.log(err));
       })
@@ -45,7 +47,8 @@ function ProductPage({commerceProducts, onAddToCart}) {
           <Grid item xs={12} sm={6}>
             <ImageCarousel 
               images={product.images}
-              name={product.name}/>
+              name={product.name}
+              loading={loading}/>
           </Grid>
           <Grid item xs={12} sm={6}>
             {matchingProduct && <Details 
@@ -55,6 +58,7 @@ function ProductPage({commerceProducts, onAddToCart}) {
               size={product.size}
               onAddToCart={onAddToCart}
               productId={matchingProduct.id}
+              loading={loading}
             />}
             
           </Grid>

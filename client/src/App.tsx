@@ -50,6 +50,7 @@ const App = ()=> {
 
 const [products, setProducts] = useState<productStateType | undefined>(undefined);
 const [commerceProducts, setCommerceProducts] = useState([]);
+const [loading, setLoading] = useState(false);
 
 // search
 const [searchTerm, setSearchTerm] = useState("");
@@ -114,7 +115,8 @@ useEffect(()=>{
 function loadProducts() {
     API.getProducts()
     .then(res => {
-        setProducts(res.data);})
+        setProducts(res.data);
+        setLoading(true)})
     .catch(err=>console.error(err));
 }
 
@@ -178,6 +180,7 @@ function loadProducts() {
             commerceProducts={commerceProducts} 
             products={products}
             searchTerm={searchTerm}
+            loading={loading}
             />
             </Route>
         {/* <Route exact path="/about"></Route> */}

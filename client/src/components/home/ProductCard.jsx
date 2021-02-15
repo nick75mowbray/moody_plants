@@ -17,13 +17,8 @@ const useStyles = makeStyles({
 });
 
 
-const ProductCard = ({name, image, price, size})=>{
+const ProductCard = ({name, image, price, size, loading})=>{
   const classes = useStyles();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(()=>{
-    setLoading(true);
-  },[])
 
   return (
     <Card className={classes.root} key={name} style={{

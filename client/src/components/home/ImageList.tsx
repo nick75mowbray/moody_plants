@@ -35,9 +35,10 @@ type propsType = {
     commerceProducts: commerceProductsInterface[],
     products: productStateType | undefined,
     searchTerm: string,
+    loading: boolean,
 };
 
-const ImageList = ({commerceProducts, products, searchTerm}: propsType) => {
+const ImageList = ({commerceProducts, products, searchTerm, loading}: propsType) => {
 
 
     return (
@@ -62,11 +63,13 @@ const ImageList = ({commerceProducts, products, searchTerm}: propsType) => {
                                             image={product.images[0]}
                                             price={matchingProduct.price.formatted_with_code}
                                             size={product.size}
+                                            loading={loading}
                                         /> : <ProductCard
                                         name={product.name}
                                         image={product.images[0]}
                                         price='...'
                                         size={product.size}
+                                        loading={loading}
                                     />}
                                         
                                 </Link>

@@ -5,7 +5,7 @@ import ThisCarouselItem from './CarouselItem';
 import {Image, Transformation} from 'cloudinary-react';
 
 
-const ImageCarousel = ({images})=>
+const ImageCarousel = ({images, loading})=>
 
 {return (images ?
     <div style={{
@@ -14,16 +14,20 @@ const ImageCarousel = ({images})=>
     }}>
     <Carousel>
         <Carousel.Item>
-           <ThisCarouselItem image={images[0]}/>
+           <ThisCarouselItem image={images[0]}
+           loading={loading}/>
         </Carousel.Item>
         <Carousel.Item>
-            <ThisCarouselItem image={images[1]}/>
+            <ThisCarouselItem image={images[1]}
+            loading={loading}/>
         </Carousel.Item>
         <Carousel.Item>
-            <ThisCarouselItem image={images[2]}/>
+            <ThisCarouselItem image={images[2]}
+            loading={loading}/>
         </Carousel.Item>
         <Carousel.Item>
-            <ThisCarouselItem image={images[3]}/>
+            <ThisCarouselItem image={images[3]}
+            loading={loading}/>
         </Carousel.Item>
     </Carousel>
 </div>
