@@ -77,8 +77,7 @@ const ProductCard = ({name, image, price, size})=>{
           }
           <div style={{
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
+            flexDirection: 'column'
           }}>
 
             {/* size */}

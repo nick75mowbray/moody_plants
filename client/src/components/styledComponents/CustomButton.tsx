@@ -19,6 +19,10 @@ const CustomButton = withStyles((theme: Theme) => ({
         background: 'linear-gradient(to bottom, #0A8279, #109A44)',
         fontWeight: 'bolder'
       },
+      '&:focus': {
+        border: 'none',
+        outline: '1px solid #11998e'
+      }
     },
   }))(Button);
 

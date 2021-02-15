@@ -1,7 +1,6 @@
 import React from 'react';
 import ImageList from '../components/home/ImageList';
 import Hero from '../components/home/Hero';
-import Sortby from '../components/home/Sortby.jsx';
 import { commerceProductsInterface } from '../utils/commerceProductsInterface';
 import mongoose from 'mongoose';
 import { Container } from '@material-ui/core';

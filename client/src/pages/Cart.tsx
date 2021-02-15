@@ -4,7 +4,6 @@ import { cartInterface } from '../utils/cartInterface';
 import EmptyCart from '../components/cart/EmptyCart';
 import FilledCart from '../components/cart/FilledCart';
 import mongoose from 'mongoose';
-import { commerceProductsInterface } from '../utils/commerceProductsInterface';
 
 // typing for individual products
 interface productType {
@@ -36,14 +35,13 @@ interface removeFromCart {
 }
 
 type propsType = {
-    commerceProducts: commerceProductsInterface[],
     products: productType[] | undefined,
     cart: cartInterface,
     onUpdateCart: updateCart,
     onRemoveFromCart: removeFromCart
 };
 
-const Cart = ({commerceProducts, products, cart, onUpdateCart, onRemoveFromCart}: propsType) => {
+const Cart = ({ products, cart, onUpdateCart, onRemoveFromCart}: propsType) => {
     const isEmpty = !cart.line_items.length;
 
 

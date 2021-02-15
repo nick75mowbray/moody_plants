@@ -1,4 +1,4 @@
-import { readFileSync } from "fs";
+
 import { Link, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Container, Divider, Button } from '@material-ui/core';
@@ -8,13 +8,10 @@ import Payment from '../components/checkout/Payment';
 import Confirmation from '../components/checkout/Confirmation';
 import { commerce } from '../lib/commerce';
 import { cartInterface } from '../utils/cartInterface';
-import { AnyARecord } from "dns";
-import CustomButton from '../components/styledComponents/CustomButton';
 import { StepIconProps } from '@material-ui/core/StepIcon';
 import StepConnector from '@material-ui/core/StepConnector';
 import Check from '@material-ui/icons/Check';
 import clsx from 'clsx';
-import Skeleton from '@material-ui/lab/Skeleton';
 
 const QontoConnector = withStyles({
   alternativeLabel: {

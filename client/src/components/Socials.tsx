@@ -28,8 +28,13 @@ function Socials() {
                 width: '100%',
                 padding: '0.5rem'
             }}>
-                <InstagramIcon component="a" color="inherit"/>
-                <MailOutlineIcon component="a" color="inherit" href='mailto:moodyplantprints@gmail.com'/>
+                <a color="inherit" href="https://www.instagram.com/moody_plant_pics/" target="_blank">
+                    <InstagramIcon color="inherit" />
+                </a>
+                <a href='mailto:moodyplantprints@gmail.com' target="_blank">
+                    <MailOutlineIcon color="inherit" />
+                </a>
+                
         </div>
         </>
     )

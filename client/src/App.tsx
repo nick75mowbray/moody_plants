@@ -16,9 +16,7 @@ import { cartInterface } from './utils/cartInterface';
 
 import API from './utils/API';
 import mongoose from 'mongoose';
-import { commerceProductsInterface } from './utils/commerceProductsInterface';
-import { AnyCnameRecord } from 'dns';
-import { type } from 'os';
+
 
 // typing for individual products
 interface productType {
@@ -44,7 +42,7 @@ interface productType {
 
 // create type for an array of products
 type productStateType = productType[];
-type commerceType = {commerceProducts: commerceProductsInterface[]};
+// type commerceType = {commerceProducts: commerceProductsInterface[]};
 
 
 
@@ -190,7 +188,6 @@ function loadProducts() {
           <Cart 
             cart={cart}
             products={products} 
-            commerceProducts={commerceProducts}
             onUpdateCart={handleUpdateCartQty}
             onRemoveFromCart={handleRemoveFromCart}
             />
