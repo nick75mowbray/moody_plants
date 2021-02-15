@@ -47,8 +47,12 @@ const Cart = ({ products, cart, onUpdateCart, onRemoveFromCart}: propsType) => {
 
     return (
         <main style={{marginTop: '64px'}}>
-            <Container>
-                <div >
+            <Container maxWidth="lg">
+                <div style={{
+                    display: 'flex',
+                    alignItems:'center',
+                    flexDirection: 'column',
+                }}>
                     <Typography 
                         align="center" 
                         variant="h5" 

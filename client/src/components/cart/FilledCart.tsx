@@ -79,16 +79,16 @@ const FilledCart = ({ products, cart, onUpdateCart, onRemoveFromCart}: propsType
         <div style={{
             display: 'flex',
             justifyContent: 'center',
+            alignItems: 'center',
             flexDirection: 'column',
             width: '100%'
         }}>
-            <div style={{
-                maxWidth: '800px'
-            }}>
+            <div style={{width: '100%'}}>
         <Paper style={{
             marginTop: '1rem',
             textAlign: 'center',
-            padding: '1.5rem'
+            padding: '1.5rem',
+            
         }}>
             <Container>
                 <Grid container spacing={4}>
