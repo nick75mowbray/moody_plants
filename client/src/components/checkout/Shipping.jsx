@@ -108,7 +108,7 @@ const Shipping = ({checkoutToken, next}) => {
                             required 
                             name='firstName'
                             label='first name'
-                            defaultValue={user.first_name}
+                            defaultValue={user.given_name}
                         />
                         
                     {/* last name */}
@@ -116,7 +116,7 @@ const Shipping = ({checkoutToken, next}) => {
                             required 
                             name='lastName'
                             label='last name'
-                            defaultValue={user.last_name}
+                            defaultValue={user.family_name}
                         />
                         
                     {/* email */}

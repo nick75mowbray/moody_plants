@@ -122,18 +122,21 @@ const Account = () => {
                         style={{padding: '16px 0'}}
                         >Account details</Typography>
                         <Grid container spacing={3}>
+                          <div style={{display: 'flex',
+                          flexDirection: 'column'}}>
                           <Grid item xs={12} sm={6}>
-                            <Typography variant="subtitle2">first name</Typography>
+                            <Typography variant="subtitle2" color="textSecondary">first name</Typography>
                             <Typography variant="body1">{user.given_name}</Typography>
                           </Grid>
                           <Grid item xs={12} sm={6}>
-                            <Typography variant="subtitle2">last name</Typography>
-                            <Typography variant="body1">{user.family_name}</Typography>
+                            <Typography variant="subtitle2" color="textSecondary">last name</Typography>
+                            <Typography variant="body1" color="textSecondary">{user.family_name}</Typography>
                           </Grid>
                           <Grid item xs={12} sm={6}>
                             <Typography variant="subtitle2">email</Typography>
                             <Typography variant="body1">{user.email}</Typography>
                           </Grid>
+                          </div>
                         </Grid>
         {/* <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(onSubmit)}>
