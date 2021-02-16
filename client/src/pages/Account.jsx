@@ -41,8 +41,12 @@ const Account = () => {
       API.getUser(user.sub)
       .then(result => {
         console.log(result.data);
-        setUserData(result.data);
-        setUserExists(true);
+        
+        if(result.data.sub){
+          setUserData(result.data);
+           setUserExists(true);
+        }
+       
       })
       .catch(err =>console.error(err));
     } 
@@ -70,8 +74,10 @@ const Account = () => {
   const onSubmit = data => {
     console.log(data);
     if (userExists){
+      console.log(`update user data`);
       updateUserDetails(data);
     } else {
+      console.log('create new user');
       createNewUser(data);
     }
   };
@@ -109,7 +115,7 @@ const Account = () => {
         <Typography 
                         variant="h6" 
                         align="center"
-                        style={{paddingTop: '16px'}}
+                        style={{padding: '16px 0'}}
                         >Account details</Typography>
         <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(onSubmit)}>
