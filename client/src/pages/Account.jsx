@@ -124,15 +124,15 @@ const Account = () => {
                         <Grid container spacing={3}>
                           <Grid item xs={12} sm={6}>
                             <Typography variant="subtitle2">first name</Typography>
-                            <Typography variant="body1">user.first_name</Typography>
+                            <Typography variant="body1">{user.first_name}</Typography>
                           </Grid>
                           <Grid item xs={12} sm={6}>
                             <Typography variant="subtitle2">last name</Typography>
-                            <Typography variant="body1">user.last_name</Typography>
+                            <Typography variant="body1">{user.last_name}</Typography>
                           </Grid>
                           <Grid item xs={12} sm={6}>
                             <Typography variant="subtitle2">email</Typography>
-                            <Typography variant="body1">user.email</Typography>
+                            <Typography variant="body1">{user.email}</Typography>
                           </Grid>
                         </Grid>
         {/* <FormProvider {...methods}>
