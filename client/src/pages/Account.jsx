@@ -34,17 +34,17 @@ const Account = () => {
   const [userData, setUserData] = useState();
   const [userExists, setUserExists] = useState(false);
   console.log(`userExists: ${userExists}`);
-  console.log(`userData: ${userData}`);
+  console.log(`userData: ${JSON.stringify(userData)}`);
 
   // check if user exists on db
   const checkUserExists = ()=>{
     if (isAuthenticated){
       API.getUser(user.sub)
       .then(result => {
-        console.log(result.data);
+        console.log(result.data[0]);
         
-        if(result.data.sub){
-          setUserData(result.data);
+        if(result.data[0].sub){
+          setUserData(result.data[0]);
            setUserExists(true);
         }
        
@@ -198,9 +198,9 @@ const Account = () => {
                             margin: '10px'
                         }}>
                             
-                            {userExists ? <CustomButton type="submit">Create Account</CustomButton>
-                            :
-                            <CustomButton type="submit">Save</CustomButton> }
+                            {userExists ? <CustomButton type="submit">Save</CustomButton>
+                            :<CustomButton type="submit">Create Account</CustomButton>
+                             }
                             
                         </div>
                 </form>
