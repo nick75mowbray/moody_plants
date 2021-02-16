@@ -22,11 +22,11 @@ const UserSchema = new Schema({
             type: String
         },
         zip: {
-            type: Number
+            type: String
         }
     ,
     sub: {
-        type: String
+        type: Number
     }
 
 });

@@ -64,7 +64,7 @@ const Account = () => {
   // create a new user on db
   const createNewUser = (data)=> {
     data.sub = user.sub;
-    console.log(`data with sub? ${data}`);
+    console.log(`data with sub? ${JSON.stringify(data)}`);
     API.saveUser(data)
     .then(result => {
       setUserData(result.data);
@@ -99,7 +99,7 @@ const Account = () => {
         sub: user.sub,
         street: "",
         city: "",
-        zip: 0000
+        zip: 0
       };
       setUserData(data);
     }
