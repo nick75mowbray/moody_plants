@@ -74,8 +74,8 @@ const Account = () => {
           user_metadata: {
             address: {
               street: '123 Main Street, Anytown, ST 12345',
-              city: '',
-              zip: ''}
+              city: 'example city',
+              zip: '5000'}
             }
           }
       };
@@ -90,6 +90,10 @@ const Account = () => {
     }
   };
 
+  useEffect(()=>{
+    updateUserMetadata();
+  },[])
+  
   const updateUserData = (event) => {
     event.preventDefault();
     updateUserMetadata();
