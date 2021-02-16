@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import { useForm, FormProvider } from 'react-hook-form';
+import FormInput from '../components/checkout/CustomTextField';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -22,6 +24,7 @@ const useStyles = makeStyles((theme) =>
 
 
 const Account = () => {
+  const methods = useForm();
   const classes = useStyles();
   const { loginWithRedirect, logout } = useAuth0();
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
@@ -58,9 +61,94 @@ const Account = () => {
       <Container maxWidth="xs">
     {(isAuthenticated && userData) ? (
       <div>
-        <h4>{userData.firstname}</h4>
-        <h4>{userData.lastname}</h4>
-        <h4>{userData.sub}</h4>
+        <FormProvider {...methods}>
+                <form onSubmit={methods.handleSubmit((data)=> next({ ... data}))}>
+                    <Grid container spacing={3}>
+
+                        {/* first name */}
+                    <FormInput
+                            required 
+                            name='firstName'
+                            label='first name'
+                            defaultValue={userData.firstname}
+                        />
+                        
+                    {/* last name */}
+                    <FormInput
+                            required 
+                            name='lastName'
+                            label='last name'
+                            defaultValue={userData.lastname}
+                        />
+                        
+                    {/* email */}
+                    <FormInput 
+                      required 
+                      name="email" 
+                      label="Email"
+                      defaultValue={userData.email} />
+                    
+
+                    {/* address */}
+                    {userData.address.street ? <FormInput
+                        required 
+                        name='address1'
+                        label='street address'
+                        defaultValue={userData.address.street}
+                    />: <FormInput
+                        required 
+                        name='address1'
+                        label='street address'
+                    />}
+                    
+                      
+                      {/* city */}
+                      {userData.address.city ? <FormInput
+                            required 
+                            name='city'
+                            label='city/ suburb'
+                            defaultValue={userData.address.city}
+                        />: <FormInput
+                            required 
+                            name='city'
+                            label='city/ suburb'
+                        /> }
+                    
+                        
+                        {/* postcode */}
+                        {userData.address.zip ? <FormInput
+                            required 
+                            name='zip'
+                            label='zip/ postcode'
+                            defaultValue={userData.address.zip}
+                        /> : <FormInput
+                            required 
+                            name='zip'
+                            label='zip/ postcode'
+                        />
+                        }
+                        
+
+                        
+                        
+
+                    </Grid>
+                    <br />
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                        }}>
+                            <Link to="/cart" style={{textDecoration: 'none'}}>
+                                <Button variant="outlined" style={{paddingLeft: '8px'}}>
+                                    <ArrowLeftIcon/>Back</Button>
+                            </Link>
+                            {/* <Button type="submit" variant="contained">Next</Button> */}
+                            <CustomButton type="submit">Create Account
+                            <ArrowRightIcon/></CustomButton>
+                        </div>
+                </form>
+            </FormProvider>
       </div>
     )
     :<>
