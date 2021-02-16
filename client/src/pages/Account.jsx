@@ -56,7 +56,7 @@ const Account = () => {
     <div>
     <main style={{marginTop: '100px'}}>
       <Container maxWidth="xs">
-    {isAuthenticated ? (
+    {(isAuthenticated && userData) ? (
       <div>
         <h4>{userData.firstname}</h4>
         <h4>{userData.lastname}</h4>
