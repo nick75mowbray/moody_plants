@@ -31,7 +31,13 @@ const Account = () => {
   const { loginWithRedirect, logout } = useAuth0();
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({
+    firstname: "",
+    lastname: "",
+    sub: "",
+    email: "",
+    address: {}
+  });
   const [userExists, setUserExists] = useState(false);
   console.log(`userExists: ${userExists}`);
 
@@ -40,6 +46,7 @@ const Account = () => {
     if (isAuthenticated){
       API.getUser(user.sub)
       .then(result => {
+        console.log(result.data);
         setUserData(result.data);
         setUserExists(true);
       })
