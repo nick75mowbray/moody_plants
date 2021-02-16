@@ -126,7 +126,7 @@ const Account = () => {
                         {/* first name */}
                     <FormInput
                             required 
-                            name='firstName'
+                            name='firstname'
                             label='first name'
                             defaultValue={userData.firstname}
                         />
@@ -134,7 +134,7 @@ const Account = () => {
                     {/* last name */}
                     <FormInput
                             required 
-                            name='lastName'
+                            name='lastname'
                             label='last name'
                             defaultValue={userData.lastname}
                         />
