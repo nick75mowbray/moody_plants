@@ -69,7 +69,7 @@ const Account = () => {
     API.saveUser(data)
     .then(result => {
       setUserData(result.data);
-
+      setUserExists(true);
     })
     .catch(err => console.error(err));
   }
@@ -105,9 +105,7 @@ const Account = () => {
       setUserData(data);
     }
   },[])
-  useEffect(()=>{
-    checkUserExists();
-  },[userData])
+ 
  
 
 
