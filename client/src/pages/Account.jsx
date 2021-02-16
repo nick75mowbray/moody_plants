@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Typography, CardMedia, CardContent, Button, CardActionArea, Card, Container } from '@material-ui/core';
+import { Typography, Paper, Button, Grid, Container } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -61,6 +61,7 @@ const Account = () => {
       <Container maxWidth="xs">
     {(isAuthenticated && userData) ? (
       <div>
+        <Paper>
         <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit((data)=> next({ ... data}))}>
                     <Grid container spacing={3}>
@@ -149,6 +150,7 @@ const Account = () => {
                         </div>
                 </form>
             </FormProvider>
+            </Paper>
       </div>
     )
     :<>
