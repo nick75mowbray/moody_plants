@@ -16,6 +16,8 @@ import API from '../utils/API';
 const Shipping = ({checkoutToken, next}) => {
     const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
     const [userData, setUserData] = useState();
+    const [userExists, setUserExists] = useState(false);
+
     const methods = useForm();
     // shipping options state
     const [shippingCountries, setShippingCountries] = useState([]);
@@ -47,6 +49,7 @@ const Shipping = ({checkoutToken, next}) => {
     // run fetch functions
     useEffect(()=>{
         fetchShippingCountries(checkoutToken.id);
+        checkUserExists();
     },[]);
 
     useEffect(()=>{
@@ -84,6 +87,7 @@ const Shipping = ({checkoutToken, next}) => {
         
         if(result.data[0].sub){
           setUserData(result.data[0]);
+          setUserExists(true)
         }
        
       })
@@ -100,7 +104,52 @@ const Shipping = ({checkoutToken, next}) => {
                 <form onSubmit={methods.handleSubmit((data)=> next({ ... data, shippingCountry, shippingSubdivision, shippingOption}))}>
                     <Grid container spacing={3}>
 
-                        {/* first name */}
+                {(isAuthenticated && userExists) ? <><FormInput
+                            required 
+                            name='firstName'
+                            label='first name'
+                            defaultValue={userData.firstname}
+                        />
+                        
+                    {/* last name */}
+                    <FormInput
+                            required 
+                            name='lastName'
+                            label='last name'
+                            defaultValue={userData.lastname}
+                        />
+                        
+                    {/* email */}
+                    <FormInput 
+                        required 
+                        name="email" 
+                        label="Email"
+                        defaultValue={userData.email} />
+                    
+
+                    {/* address */}
+                    <FormInput
+                        required 
+                        name='address1'
+                        label='street address'
+                        defaultValue={userData.street}
+                    />
+                      
+                      {/* city */}
+                    <FormInput
+                            required 
+                            name='city'
+                            label='city/ suburb'
+                            defaultValue={userData.city}
+                        />
+                        
+                        {/* postcode */}
+                        <FormInput
+                            required 
+                            name='zip'
+                            label='zip/ postcode'
+                            defaultValue={userData.zip}
+                        /></>: <>{/* first name */}
                     <FormInput
                             required 
                             name='firstName'
@@ -137,7 +186,8 @@ const Shipping = ({checkoutToken, next}) => {
                             required 
                             name='zip'
                             label='zip/ postcode'
-                        />
+                        /></>}
+                        
                         
 
                         {/* shipping country */}
