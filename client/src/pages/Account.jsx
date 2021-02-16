@@ -33,6 +33,7 @@ const Account = () => {
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const [userData, setUserData] = useState();
   const [userExists, setUserExists] = useState(false);
+  console.log(`userExists: ${userExists}`);
 
   // check if user exists on db
   const checkUserExists = ()=>{
