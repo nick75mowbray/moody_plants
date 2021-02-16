@@ -7,6 +7,9 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useForm, FormProvider } from 'react-hook-form';
 import FormInput from '../components/checkout/CustomTextField';
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import CustomButton from '../components/styledComponents/CustomButton';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -140,10 +143,7 @@ const Account = () => {
                             justifyContent: 'space-between',
                             alignItems: 'center'
                         }}>
-                            <Link to="/cart" style={{textDecoration: 'none'}}>
-                                <Button variant="outlined" style={{paddingLeft: '8px'}}>
-                                    <ArrowLeftIcon/>Back</Button>
-                            </Link>
+                            
                             {/* <Button type="submit" variant="contained">Next</Button> */}
                             <CustomButton type="submit">Create Account
                             <ArrowRightIcon/></CustomButton>
