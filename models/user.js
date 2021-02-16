@@ -26,7 +26,7 @@ const UserSchema = new Schema({
         }
     ,
     sub: {
-        type: Number
+        type: String
     }
 
 });
