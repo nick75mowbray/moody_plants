@@ -63,7 +63,9 @@ const Account = () => {
 
   // create a new user on db
   const createNewUser = (data)=> {
-    API.saveUser(...data, {sub: user.sub})
+    data.sub = user.sub;
+    console.log(`data with sub? ${data}`);
+    API.saveUser(data)
     .then(result => {
       setUserData(result.data);
 
