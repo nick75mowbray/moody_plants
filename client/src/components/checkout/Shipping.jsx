@@ -7,11 +7,15 @@ import CustomButton from '../styledComponents/CustomButton';
 import { commerce } from '../../lib/commerce';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { useAuth0 } from "@auth0/auth0-react";
+import API from '../utils/API';
 
   
 
 
 const Shipping = ({checkoutToken, next}) => {
+    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+    const [userData, setUserData] = useState();
     const methods = useForm();
     // shipping options state
     const [shippingCountries, setShippingCountries] = useState([]);
@@ -70,6 +74,23 @@ const Shipping = ({checkoutToken, next}) => {
         {
         id: option.id, label: `${option.description} - (${option.price.formatted_with_code})`
         }));
+
+    // check if user exists on db
+  const checkUserExists = ()=>{
+    if (isAuthenticated){
+      API.getUser(user.sub)
+      .then(result => {
+        console.log(result.data[0]);
+        
+        if(result.data[0].sub){
+          setUserData(result.data[0]);
+        }
+       
+      })
+      .catch(err =>console.error(err));
+    } 
+  }
+
 
     return (
         <div>

@@ -149,7 +149,7 @@ const Account = () => {
                       defaultValue={userData.email} />
 
                     {/* address */}
-                    {(userExists && userData.street) ? <FormInput
+                    {(userExists) ? <FormInput
                         required 
                         name='street'
                         label='street address'
@@ -162,7 +162,7 @@ const Account = () => {
                     
                       
                       {/* city */}
-                      {(userExists && userData.city) ? <FormInput
+                      {(userExists) ? <FormInput
                             required 
                             name='city'
                             label='city/ suburb'
@@ -175,7 +175,7 @@ const Account = () => {
                     
                         
                         {/* postcode */}
-                        {(userExists && userData.zip) ? <FormInput
+                        {(userExists) ? <FormInput
                             required 
                             name='zip'
                             label='zip/ postcode'
