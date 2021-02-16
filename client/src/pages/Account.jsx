@@ -31,13 +31,7 @@ const Account = () => {
   const { loginWithRedirect, logout } = useAuth0();
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-  const [userData, setUserData] = useState({
-    firstname: "",
-    lastname: "",
-    sub: "",
-    email: "",
-    address: {}
-  });
+  const [userData, setUserData] = useState();
   const [userExists, setUserExists] = useState(false);
   console.log(`userExists: ${userExists}`);
 
@@ -95,11 +89,9 @@ const Account = () => {
         lastname: user.family_name,
         email: user.email,
         sub: user.sub,
-        address: {
-          street: "",
-          city: "",
-          zip: ""
-        }
+        street: "",
+        city: "",
+        zip: ""
       };
       setUserData(data);
     }
@@ -147,24 +139,24 @@ const Account = () => {
                       defaultValue={userData.email} />
 
                     {/* address */}
-                    {userData.address.street ? <FormInput
+                    {(userExists && userData.street) ? <FormInput
                         required 
-                        name='address1'
+                        name='street'
                         label='street address'
-                        defaultValue={userData.address.street}
+                        defaultValue={userData.street}
                     />: <FormInput
                         required 
-                        name='address1'
+                        name='street'
                         label='street address'
                     />}
                     
                       
                       {/* city */}
-                      {userData.address.city ? <FormInput
+                      {(userExists && userData.city) ? <FormInput
                             required 
                             name='city'
                             label='city/ suburb'
-                            defaultValue={userData.address.city}
+                            defaultValue={userData.city}
                         />: <FormInput
                             required 
                             name='city'
@@ -173,11 +165,11 @@ const Account = () => {
                     
                         
                         {/* postcode */}
-                        {userData.address.zip ? <FormInput
+                        {(userExists && userData.zip) ? <FormInput
                             required 
                             name='zip'
                             label='zip/ postcode'
-                            defaultValue={userData.address.zip}
+                            defaultValue={userData.zip}
                         /> : <FormInput
                             required 
                             name='zip'

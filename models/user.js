@@ -15,7 +15,6 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    address: {
         street: {
             type: String
         },
@@ -25,7 +24,7 @@ const UserSchema = new Schema({
         zip: {
             type: String
         }
-    },
+    ,
     sub: {
         type: String
     }
