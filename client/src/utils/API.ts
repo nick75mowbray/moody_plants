@@ -1,6 +1,7 @@
 import axios from "axios";
 import mongoose from 'mongoose';
 
+
 export default {
   // Gets all Products
   getProducts: function() {
@@ -13,5 +14,15 @@ export default {
   // updates the product, used for updating page views
   updateViews: function(id:mongoose.ObjectId, body:any) {
     return axios.put(`/api/products/${id}`, body);
-    }
+    },
+  getUser: function(id:string) {
+    return axios.get(`/api/users/${id}`);
+  },
+  saveUser: function(userData: any) {
+    return axios.post("/api/users", userData);
+  },
+  updateUser: function(id:string, body:any) {
+    return axios.put(`/api/users/${id}`, body);
+    },
+
 };

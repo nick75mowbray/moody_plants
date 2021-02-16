@@ -27,78 +27,30 @@ const Account = () => {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+  const [userData, setUserData] = useState();
 
   if (isLoading) {
     return <div>Loading ...</div>;
   }
 
-  // fetch usermeta data
-  useEffect(() => {
-    const getUserMetadata = async () => {
-      
-      try {
-        const accessToken = await getAccessTokenSilently({
-          audience: `https://${domain}/api/v2/`,
-          scope: "read:current_user",
-        });
-        const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
-        const metadataResponse = await fetch(userDetailsByIdUrl, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        const { user_metadata } = await metadataResponse.json();
-        setUserMetadata(user_metadata);
-      } catch (e) {
-        console.log(e.message);
-      }
-    };
-    getUserMetadata();
-  }, []);
-
-  // update user metadata
-  const updateUserMetadata = async () => {
-    try {
-      const accessToken = await getAccessTokenSilently({
-        audience: `https://${domain}/api/v2/`,
-        scope: "update:current_user_metadata",
-      });
-      const userDetailsUpdateUrl = `https://${domain}/api/v2/users/${user.sub}`;
-      var options = {
-        method: "PATCH",
-        url: userDetailsUpdateUrl,
-        headers: {
-          authorization: `Bearer ${accessToken}`, 
-          'content-type': 'application/json'},
-        data: {
-          user_metadata: {
-            address: {
-              street: '123 Main Street, Anytown, ST 12345',
-              city: 'example city',
-              zip: '5000'}
-            }
-          }
-      };
-      axios.request(options).then(function (response) {
-        console.log(response.data);
-      }).catch(function (error) {
-        console.error(error);
-      });
-        
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
+  // fetch user data
   useEffect(()=>{
-    updateUserMetadata();
+    if (isAuthenticated){
+      const data = {
+        firstname: user.given_name,
+        lastname: user.family_name,
+        email: user.email,
+        sub: user.sub,
+        address: {
+          street: "",
+          city: "",
+          zip: ""
+        }
+      };
+      setUserData(data);
+    }
   },[])
-  
-  const updateUserData = (event) => {
-    event.preventDefault();
-    updateUserMetadata();
-  }
-  
+ 
 
   return (
     <div>
@@ -106,44 +58,9 @@ const Account = () => {
       <Container maxWidth="xs">
     {isAuthenticated ? (
       <div>
-        <Card >
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={user.picture}
-            title={user.name}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-            {user.name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-            {user.email}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        </Card>
-        {/* user metadata */}
-        <h3>User Metadata</h3>
-        {userMetadata ? (<div>
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="street" label="street address" value={user.user_metadata.address.street}/>
-            <TextField id="city" label="city/ suburb" value={user.user_metadata.address.city}/>
-            <TextField id="zip" label="zip/ postcode" value={user.user_metadata.address.zip}/>
-            <CustomButton type="submit" onSubmit={(event)=>updateUserData(event)}/>
-        </form>
-          <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
-          </div>
-        ) : (
-          <div>
-          "No user metadata defined"
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Standard" />
-            <TextField id="filled-basic" label="Filled" variant="filled" />
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        </form>
-          </div>
-        )}
+        <h4>{userData.firstname}</h4>
+        <h4>{userData.lastname}</h4>
+        <h4>{userData.sub}</h4>
       </div>
     )
     :<>
