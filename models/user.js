@@ -22,7 +22,7 @@ const UserSchema = new Schema({
             type: String
         },
         zip: {
-            type: String
+            type: Number
         }
     ,
     sub: {

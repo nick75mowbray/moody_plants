@@ -99,7 +99,7 @@ const Account = () => {
         sub: user.sub,
         street: "",
         city: "",
-        zip: ""
+        zip: 0000
       };
       setUserData(data);
     }
