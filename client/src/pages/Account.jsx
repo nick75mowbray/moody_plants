@@ -34,6 +34,7 @@ const Account = () => {
   const [userData, setUserData] = useState();
   const [userExists, setUserExists] = useState(false);
   console.log(`userExists: ${userExists}`);
+  console.log(`userData: ${userData}`);
 
   // check if user exists on db
   const checkUserExists = ()=>{
@@ -104,6 +105,9 @@ const Account = () => {
       setUserData(data);
     }
   },[])
+  useEffect(()=>{
+    checkUserExists();
+  },[userData])
  
 
 
