@@ -8,7 +8,7 @@ import { commerce } from '../../lib/commerce';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { useAuth0 } from "@auth0/auth0-react";
-import API from '../utils/API';
+import API from '../../utils/API';
 
   
 
