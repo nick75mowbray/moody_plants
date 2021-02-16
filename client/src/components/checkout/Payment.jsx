@@ -86,7 +86,8 @@ const Payment = ({ shippingData, checkoutToken, onbackStep, onCaptureCheckout, n
                                     type="submit"
                                     disabled={!stripe}
                                     >
-                                        Pay { checkoutToken.live.subtotal.formatted_with_code }
+                                        Pay {checkoutToken.live.total.raw
+                                +checkoutToken.live.shipping.available_options[0].price.raw}.00 AUD
                                     </CustomButton>
                             </div>
                         </form>

@@ -20,7 +20,7 @@ const Confirmation = (order:any) => {
             style={{marginBottom: '1rem'}}/>
             <Typography variant="h5" gutterBottom> ORDER PLACED: {order.order.customer_reference}</Typography>
             <Typography variant="body2">Thankyou for your purchase, {order.order.customer.firstname} {order.order.customer.lastname}
-            An email will be sent to {order.order.customer.email} with your order details</Typography>
+             an email will be sent to {order.order.customer.email} with your order details</Typography>
             <Link to="/" style={{textDecoration: 'none'}}>
                 <CustomButton>Back to site</CustomButton>
             </Link>
