@@ -7,9 +7,8 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useForm, FormProvider } from 'react-hook-form';
 import FormInput from '../components/checkout/CustomTextField';
-import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import CustomButton from '../components/styledComponents/CustomButton';
+import API from '../utils/API';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -31,9 +30,49 @@ const Account = () => {
   const classes = useStyles();
   const { loginWithRedirect, logout } = useAuth0();
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
-  const [userMetadata, setUserMetadata] = useState(null);
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const [userData, setUserData] = useState();
+  const [userExists, setUserExists] = useState(false);
+
+  // check if user exists on db
+  const checkUserExists = ()=>{
+    if (isAuthenticated){
+      API.getUser(user.sub)
+      .then(result => {
+        setUserData(result.data);
+        setUserExists(true);
+      })
+      .catch(err =>console.error(err));
+    } 
+  }
+
+  // update userdetails in db
+  const updateUserDetails = (data)=> {
+    API.updateUser(user.sub, data)
+    .then(result => {
+      setUserData(result.data);
+    })
+    .catch(err => console.error(err));
+  }
+
+  // create a new user on db
+  const createNewUser = (data)=> {
+    API.saveUser(...data, {sub: user.sub})
+    .then(result => {
+      setUserData(result.data);
+
+    })
+    .catch(err => console.error(err));
+  }
+
+  const onSubmit = data => {
+    console.log(data);
+    if (userExists){
+      updateUserDetails(data);
+    } else {
+      createNewUser(data);
+    }
+  };
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -41,7 +80,8 @@ const Account = () => {
 
   // fetch user data
   useEffect(()=>{
-    if (isAuthenticated){
+    checkUserExists();
+    if (isAuthenticated && !userExists){
       const data = {
         firstname: user.given_name,
         lastname: user.family_name,
@@ -58,15 +98,21 @@ const Account = () => {
   },[])
  
 
+
   return (
     <div>
     <main style={{marginTop: '100px'}}>
-      <Container maxWidth="xs">
+      <Container maxWidth="sm">
     {(isAuthenticated && userData) ? (
-      <div>
-        <Paper>
+      <div>        
+        <Paper style={{padding: '32px'}}>
+        <Typography 
+                        variant="h6" 
+                        align="center"
+                        style={{paddingTop: '16px'}}
+                        >Account details</Typography>
         <FormProvider {...methods}>
-                <form onSubmit={methods.handleSubmit((data)=> next({ ... data}))}>
+                <form onSubmit={methods.handleSubmit(onSubmit)}>
                     <Grid container spacing={3}>
 
                         {/* first name */}
@@ -91,7 +137,6 @@ const Account = () => {
                       name="email" 
                       label="Email"
                       defaultValue={userData.email} />
-                    
 
                     {/* address */}
                     {userData.address.street ? <FormInput
@@ -131,22 +176,20 @@ const Account = () => {
                             label='zip/ postcode'
                         />
                         }
-                        
-
-                        
-                        
 
                     </Grid>
                     <br />
                         <div style={{
                             display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
+                            justifyContent: 'flex-end',
+                            alignItems: 'center',
+                            margin: '10px'
                         }}>
                             
-                            {/* <Button type="submit" variant="contained">Next</Button> */}
-                            <CustomButton type="submit">Create Account
-                            <ArrowRightIcon/></CustomButton>
+                            {userExists ? <CustomButton type="submit">Create Account</CustomButton>
+                            :
+                            <CustomButton type="submit">Save</CustomButton> }
+                            
                         </div>
                 </form>
             </FormProvider>
