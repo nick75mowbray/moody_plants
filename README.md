@@ -1,6 +1,6 @@
 # Project 3 MERN e-commerce site
  
-[link to deployed site](https://moodyplants.com/)
+[link to deployed site](https://quiet-dusk-93728.herokuapp.com//)
 ![screenshot](/screenshots/main.png)
 ## Description
 This is an e-commerce MERN application for selling some of my fine art photography prints. It uses predominantly  React and material-ui in Typescript for the front end, and Node.js and mongoose/mongodb atlas for the backend.
