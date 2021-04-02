@@ -17,7 +17,7 @@ var options = {
     'cache-control': 'no-cache'
   },
   data: {
-    initiate_login_uri: 'https://www.moodyplants.com/login',
+    initiate_login_uri: 'https://quiet-dusk-93728.herokuapp.com/login',
    }
 };
 
